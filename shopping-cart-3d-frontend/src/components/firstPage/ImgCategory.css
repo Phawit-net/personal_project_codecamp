@@ -1,0 +1,21 @@
+.ant-carousel .slick-list {
+  height: 480px;
+}
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    overflow: hidden;
+  }
+  
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+
+.ant-carousel .slick-dots li button {
+  height:10px !important;
+  display: none !important;
+}
+
+.catMenu :hover{
+  opacity: .8;
+}
