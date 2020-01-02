@@ -1,15 +1,49 @@
 import React, { Component } from "react";
 import { Row, Input, Button, Checkbox, Col, Form, Icon } from "antd";
+import Axios from '../config/api.service'
+import { Redirect } from 'react-router'
+import jwtDecode from 'jwt-decode'
 
 class LoginCard extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      username : '',
+      password : '',
+    }
+  }
+
+   handleSubmit = (e)=>{
+    e.preventDefault()
+
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        Axios.post('/loginUser', {
+          username: values.username,
+          password: values.password
+        })
+        .then(result => {
+          console.log(result.data)
+          localStorage.setItem('ACCESS_TOKEN', result.data.token)
+          // this.props.history.push('/')
+          // window.location.reload(true);
+        })
+        .catch(err => {
+          console.error(err);
+          this.props.form.resetFields()
+        })
+      }
+    })
+  }
+  
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form className="login-form">
+      <Form onSubmit={this.handleSubmit} className="login-form">
         <Row style={{ width: 250, padding: "0px 10px" }}>
           <Col>
             <Form.Item label="Username">
-              {getFieldDecorator("Username", {
+              {getFieldDecorator("username", {
                 rules: [
                   {
                     required: true,
@@ -18,6 +52,7 @@ class LoginCard extends Component {
                 ]
               })(
                 <Input
+                  // onChange = {(e)=> this.setState({username : e.target.value})}
                   prefix={
                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
@@ -27,7 +62,7 @@ class LoginCard extends Component {
           </Col>
           <Col>
             <Form.Item label="Password">
-              {getFieldDecorator("Password", {
+              {getFieldDecorator("password", {
                 rules: [
                   {
                     required: true,
@@ -36,6 +71,7 @@ class LoginCard extends Component {
                 ]
               })(
                 <Input
+                  // onChange = {(e)=> this.setState({password : e.target.value})}
                   prefix={
                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                   }

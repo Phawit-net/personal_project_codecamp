@@ -13,7 +13,7 @@ module.exports = (app, db) => {
         res.status(403).send(info.message)
       } else {
         user.update({
-          name: req.body.name,
+          email: req.body.email,
           role: "user"
         })
           .then(() => {
@@ -42,12 +42,18 @@ module.exports = (app, db) => {
           res.status(400).send(info.message)
         }
       } else {
-        const token = jwt.sign({ id: user.id, role: user.role, name: user.name },
-          jwtOptions.secretOrKey, { expiresIn: 3600 })
-        res.status(200).send({
-          auth: true,
-          token,
-          message: 'user found & logged in'
+        db.user.findOne({
+          where: {
+            username: req.body.username,
+          },
+        }).then(user => {
+          const token = jwt.sign({ id: user.id, role: user.role, email: user.email },
+            jwtOptions.secretOrKey, { expiresIn: 3600 })
+          res.status(200).send({
+            auth: true,
+            token,
+            message: 'user found & logged in'
+          })
         })
       }
     })(req, res, next)

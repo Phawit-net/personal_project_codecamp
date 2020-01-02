@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ProductCard from "../components/product/ProductCard";
 import CategoryList from "../components/product/CategoryList";
-import Axios from "axios";
+import Axios from '../config/api.service'
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class MainPage extends Component {
   }
 
   componentDidMount() {
-    Axios.get("http://localhost:8080/categories")
+    Axios.get("/categories")
       .then(result => {
         this.setState({
           categoryList: result.data,
@@ -24,14 +24,14 @@ export default class MainPage extends Component {
         });
       })
 
-    Axios.get("http://localhost:8080/subcategories")
+    Axios.get("/subcategories")
       .then(result => {
         this.setState({
           subCategoryList: result.data
         });
       })
 
-      Axios.get("http://localhost:8080/products/1")
+      Axios.get("/products/1")
       .then(result => {
         this.setState({
           productList: result.data
@@ -44,7 +44,7 @@ export default class MainPage extends Component {
       selectedCategoriesId: e.key,
       selectedSubCategoriesId: null
     }, () => {
-      Axios.get(`http://localhost:8080/products/${this.state.selectedCategoriesId}`)
+      Axios.get(`/products/${this.state.selectedCategoriesId}`)
         .then(result => {
           this.setState({
             productList: result.data
@@ -58,7 +58,7 @@ export default class MainPage extends Component {
     this.setState({
       selectedSubCategoriesId: e.key
     }, () => {
-      Axios.get(`http://localhost:8080/products/subcategory/${this.state.selectedSubCategoriesId}`)
+      Axios.get(`/products/subcategory/${this.state.selectedSubCategoriesId}`)
         .then(result => {
           this.setState({
             productList: result.data

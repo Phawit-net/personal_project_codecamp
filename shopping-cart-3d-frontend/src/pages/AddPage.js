@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Input, Form, Button, Select } from 'antd'
-import Axios from "axios";
+import Axios from '../config/api.service'
 
 class AddPage extends Component {
 
@@ -14,14 +14,14 @@ class AddPage extends Component {
     };
   }
   componentDidMount() {
-    Axios.get("http://localhost:8080/categories")
+    Axios.get("/categories")
       .then(result => {
         this.setState({
           categoryList: result.data
         });
       })
 
-    Axios.get("http://localhost:8080/subcategories")
+    Axios.get("/subcategories")
       .then(result => {
         this.setState({
           subCategoryList: result.data
@@ -45,13 +45,13 @@ class AddPage extends Component {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, value) => {
       if (!err) {
-        Axios.post("http://localhost:8080/product", {
-          name: value.Name,
-          category_id : value.Categories,
+        Axios.post("/product", {
+          name: value.name,
+          category_id : value.categories,
           sub_category_id: value.subCategories,
-          price: value.Price,
-          description: value.Description,
-          image: value.Image,
+          price: value.price,
+          description: value.description,
+          image: value.image,
           published_date: '2008-11-11'
         })
           .then(result => {
@@ -86,7 +86,7 @@ class AddPage extends Component {
                 <Row type='flex' align='middle'>
                   <Col span={10} style={{ marginRight: 20 }}>
                     <Form.Item label="Name" {...formProductLayout}>
-                      {getFieldDecorator("Name", {
+                      {getFieldDecorator("name", {
                         rules: [
                           {
                             required: true,
@@ -98,7 +98,7 @@ class AddPage extends Component {
                   </Col>
                   <Col style={{ marginRight: 20 }}>
                     <Form.Item>
-                      {getFieldDecorator('Categories', {
+                      {getFieldDecorator('categories', {
                         rules: [
                           {
                             required: true,
@@ -139,7 +139,7 @@ class AddPage extends Component {
                 <Row type='flex' align='middle'>
                   <Col span={24}>
                     <Form.Item label="Description">
-                      {getFieldDecorator("Description", {
+                      {getFieldDecorator("description", {
                         rules: [
                           {
                             required: true,
@@ -153,7 +153,7 @@ class AddPage extends Component {
                 <Row type='flex' align='middle'>
                   <Col span={10} style={{ marginRight: 20 }}>
                     <Form.Item label="Price" {...formProductLayout}>
-                      {getFieldDecorator("Price", {
+                      {getFieldDecorator("price", {
                         rules: [
                           {
                             required: true,
@@ -165,7 +165,7 @@ class AddPage extends Component {
                   </Col>
                   <Col span={10} style={{ marginRight: 20 }}>
                     <Form.Item label="Image" {...formProductLayout}>
-                      {getFieldDecorator("Image", {
+                      {getFieldDecorator("image", {
                         rules: [
                           {
                             required: true,
