@@ -21,3 +21,8 @@ img{
 .ant-menu-horizontal {
     border-bottom: 0px !important;
 }
+
+.ant-menu-horizontal > .ant-menu-item-selected > a,
+.ant-menu-horizontal > .ant-menu-item:hover > a{
+    color:green !important;
+}

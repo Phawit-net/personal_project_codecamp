@@ -6,14 +6,14 @@ export default class CategoryList extends Component {
   renderCategoryList() {
     return this.props.categoryList.map(cat => (
       <Menu.Item key={cat.id} style={{ width: 90 }}>
-        {/* <a href = {`/main/${cat.id}`}  style ={{textDecoration : 'none' }}> */}
+        <a href = {`/main/${cat.id}`}>
         <Col style={{ display: "flex", justifyContent: "center" }}>
           <img src={cat.icon} alt={cat.name} style={{ paddingTop: "5px" }} />
         </Col>
         <Col style={{ display: "flex", justifyContent: "center" }}>
           {cat.name}
         </Col>
-        {/* </a> */}
+        </a>
       </Menu.Item>
     ));
   }

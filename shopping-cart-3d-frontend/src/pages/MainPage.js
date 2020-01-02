@@ -16,11 +16,14 @@ export default class MainPage extends Component {
   }
 
   componentDidMount() {
+    const location = this.props.location.pathname.split("/")[2]
+    // const local = this.state.categoryList.filter(cat => cat.name == location ?cat : null).map(cat => cat.id)[0]
+    // console.log(local)
     Axios.get("/categories")
       .then(result => {
         this.setState({
           categoryList: result.data,
-          selectedCategoriesId: result.data[0].id
+          selectedCategoriesId: location
         });
       })
 
@@ -40,6 +43,9 @@ export default class MainPage extends Component {
   }
 
   handleClick = e => {
+    // const location = this.props.location.pathname.split("/")[2]
+    // const local = this.state.categoryList.filter(cat => cat.name == location ?cat : null).map(cat => cat.id)[0]
+    console.log(e.key)
     this.setState({
       selectedCategoriesId: e.key,
       selectedSubCategoriesId: null
@@ -54,7 +60,7 @@ export default class MainPage extends Component {
   }
 
   handleSubClick = e => {
-    console.log(e.key)
+    console.log(this.state.categoryList)
     this.setState({
       selectedSubCategoriesId: e.key
     }, () => {
