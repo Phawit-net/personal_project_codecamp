@@ -15,7 +15,6 @@ class LoginCard extends Component {
 
    handleSubmit = (e)=>{
     e.preventDefault()
-
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         Axios.post('/loginUser', {
@@ -26,7 +25,7 @@ class LoginCard extends Component {
           console.log(result.data)
           localStorage.setItem('ACCESS_TOKEN', result.data.token)
           // this.props.history.push('/')
-          // window.location.reload(true);
+          window.location.reload(true);
         })
         .catch(err => {
           console.error(err);
