@@ -15,10 +15,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1J0gDpk5BsLRh2ck_J7vYBN9AHG-2Xv9m" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img  src="https://drive.google.com/uc?id=1J0gDpk5BsLRh2ck_J7vYBN9AHG-2Xv9m" style={{position: "absolute", width: "100px", height: '100px' ,filter:"invert(100%)"}} />
               </div>
-              {/* <a href='/main/Architectures'> */}
-              <a href='/main/1'>
+              <a href='/Main/Architectures'>
+              {/* <a href='/main/1'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1JRzBkOSiz5f795mDdasGY63IEdGDnstl' alt="building_img1" />
@@ -36,10 +36,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1zteA9-guY6LOgadIfq1oSHLpWBpaImQj" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1zteA9-guY6LOgadIfq1oSHLpWBpaImQj" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Animals'> */}
-              <a href='/main/4'>
+              <a href='/Main/Animals'>
+              {/* <a href='/main/4'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1BeFRCp54NVcxZ4i1OC11lRPXE6Nr5i0k' alt="animal_img1" />
@@ -57,10 +57,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1WwKQZplSffQIt_7MMvFLDcrQgovw7M3t" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1WwKQZplSffQIt_7MMvFLDcrQgovw7M3t" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Furnitures'> */}
-              <a href='/main/6'>
+              <a href='/Main/Furnitures'>
+              {/* <a href='/main/6'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1-pTNUPFJaQx40A8mgKirvRqKLmhkEkgB' alt="furniture_img1" />
@@ -81,10 +81,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1ddNeayh5R4C9GQ6uHaYq5VSiFopFXJMS" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1ddNeayh5R4C9GQ6uHaYq5VSiFopFXJMS" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Characters'> */}
-              <a href='/main/2'>
+              <a href='/Main/Characters'>
+              {/* <a href='/main/2'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1092pfWZYty9JAGo6eHEWdEkFSFajgwgt' alt="char_img1" />
@@ -105,10 +105,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1COB1IGbavEElgd0lE3p8risH09gTEzj6" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1COB1IGbavEElgd0lE3p8risH09gTEzj6" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)"}} />
               </div>
-              {/* <a href='/main/Foods'> */}
-              <a href='/main/7'>
+              <a href='/Main/Foods'>
+              {/* <a href='/main/7'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1ss1pU9XSaPMXRlXpWMXqS5ogn3ejR_xM' alt="food_img1" />
@@ -129,10 +129,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=157yEhJLBOXBlKvJ7czg6oU9Uoel7wxDG" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=157yEhJLBOXBlKvJ7czg6oU9Uoel7wxDG" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Plants'> */}
-              <a href='/main/8'>
+              <a href='/Main/Plants'>
+              {/* <a href='/main/8'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1mdjOR7-ml_X3XwJZM1cFfw1RP-P-PpdH' alt="plant_img1" />
@@ -156,10 +156,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1fKh1z1wpHWG_QXFGt3r-hzmjL_ehkmm-" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1fKh1z1wpHWG_QXFGt3r-hzmjL_ehkmm-" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Vehicles'> */}
-              <a href='/main/3'>
+              <a href='/Main/Vehicles'>
+              {/* <a href='/main/3'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1LTETk-5QSqSXlRQBBWytXbnz7b9cK3Dk' alt="vehicle_img1" />
@@ -177,10 +177,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1ZwVbC1NVBjnMfvwXOehlhbUGZv7EwZYE" style={{ position: "absolute", width: "100px", height: '100px' }} />
+                <img src="https://drive.google.com/uc?id=1ZwVbC1NVBjnMfvwXOehlhbUGZv7EwZYE" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)" }} />
               </div>
-              {/* <a href='/main/Weapons'> */}
-              <a href='/main/5'>
+              <a href='/Main/Weapons'>
+              {/* <a href='/main/5'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1joOT1zYIUYYXjDaCWkQ3yLR5-unX4_me' alt="weapon_img1" />
@@ -204,10 +204,10 @@ export class ImgCategory extends Component {
           <Col span={8}>
             <div onClick={this.handleClick} style={{ cursor: 'pointer' }}>
               <div style={{ position: "absolute", width: '492px ', height: '480px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src="https://drive.google.com/uc?id=1Y-1kfaoYeKVYWwWwE_bjnzRpvjRO4kgO" style={{ position: "absolute", width: "100px", height: '100px'}} />
+                <img src="https://drive.google.com/uc?id=1Y-1kfaoYeKVYWwWwE_bjnzRpvjRO4kgO" style={{ position: "absolute", width: "100px", height: '100px',filter:"invert(100%)"}} />
               </div>
-              {/* <a href='/main/Electronics'> */}
-              <a href='/main/9'>
+              <a href='/Main/Electronics'>
+              {/* <a href='/main/9'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='https://drive.google.com/uc?id=1VHE0Ji34jzZ-r3Jb0no28OcLvLiyJyoi' alt="electronic_img1" />

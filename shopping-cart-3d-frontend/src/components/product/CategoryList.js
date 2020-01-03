@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { Menu, Row, Col } from "antd";
+import { Menu, Row, Col} from "antd";
 import "./CategoryList.css";
 
 export default class CategoryList extends Component {
   renderCategoryList() {
     return this.props.categoryList.map(cat => (
       <Menu.Item key={cat.id} style={{ width: 90 }}>
-        <a href = {`/main/${cat.id}`}>
+        <a href = {`/Main/${cat.name}`}>
         <Col style={{ display: "flex", justifyContent: "center" }}>
           <img src={cat.icon} alt={cat.name} style={{ paddingTop: "5px" }} />
         </Col>
-        <Col style={{ display: "flex", justifyContent: "center" }}>
-          {cat.name}
+        <Col style={{ display: "flex", justifyContent: "center"}}>
+          <span style ={{color:'#fff'}}>{cat.name}</span>
         </Col>
         </a>
       </Menu.Item>
@@ -23,7 +23,7 @@ export default class CategoryList extends Component {
       .map(subCat => (
         <Menu.Item key={subCat.id} style={{ width: 90 }}>
           <Col style={{ display: "flex", justifyContent: "center" }}>
-            {subCat.name}
+            <span style ={{color:'#fff'}}>{subCat.name}</span>
           </Col>
         </Menu.Item>
       ));
