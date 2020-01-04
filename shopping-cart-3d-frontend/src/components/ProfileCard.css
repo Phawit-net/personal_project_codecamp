@@ -1,0 +1,11 @@
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left{
+    border-right : 0px !important;
+}
+.ant-menu-item{
+    padding-left: 0 !important; 
+    padding-right: 0 !important; 
+}
+
+a,a:link,a:visited,a:hover,a:active {
+    color:#595959;
+}

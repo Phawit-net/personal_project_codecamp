@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Row, Input, Button, Checkbox, Col, Form, Icon } from "antd";
 import Axios from '../config/api.service'
-import { Redirect } from 'react-router'
-import jwtDecode from 'jwt-decode'
 
 class LoginCard extends Component {
   constructor(props){

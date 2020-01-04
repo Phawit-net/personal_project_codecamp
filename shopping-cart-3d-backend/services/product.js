@@ -13,6 +13,20 @@ module.exports = (app, db) => {
           res.status(400).json({ message: error.message })
         })
     })
+    // path for detail page
+    app.get('/details/:name', (req, res) => {
+      db.product.findOne({
+        where :{
+          name: req.params.name
+        }
+      })
+        .then(result => {
+          res.status(200).json(result)
+        })
+        .catch(error => {
+          res.status(400).json({ message: error.message })
+        })
+    })
 
     app.get('/products/subcategory/:id', (req, res) => {
       db.product.findAll({

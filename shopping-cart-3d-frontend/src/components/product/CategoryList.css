@@ -8,16 +8,16 @@ img{
 
 .ant-menu-horizontal > .ant-menu-item-selected > a > div > img,
 .ant-menu-horizontal > .ant-menu-item-selected > a > div > span{
-    filter: invert(63%) sepia(51%) saturate(7394%) hue-rotate(334deg) brightness(106%) contrast(99%);
+    filter: invert(48%) sepia(77%) saturate(2959%) hue-rotate(189deg) brightness(98%) contrast(106%);
 }
 
 .ant-menu-horizontal > .ant-menu-item-selected > div > span{
-    filter: invert(63%) sepia(51%) saturate(7394%) hue-rotate(334deg) brightness(106%) contrast(99%);
+    filter: invert(48%) sepia(77%) saturate(2959%) hue-rotate(189deg) brightness(98%) contrast(106%);
 }
 
 .ant-menu-horizontal > .ant-menu-item-selected{
-    color: #fe3054 !important;
-    border-bottom: 2px solid #fe3054 !important;
+    color: #2694ff !important;
+    border-bottom: 2px solid #2694ff !important;
 }
 .ant-menu-horizontal >.ant-menu-item{
     transition: color 0s;

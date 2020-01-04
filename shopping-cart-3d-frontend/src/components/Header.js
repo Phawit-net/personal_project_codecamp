@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Row, Col, Popover, Button, Modal } from 'antd';
+import { Row, Col, Popover, Button} from 'antd';
 import LoginCard from './LoginCard';
 import SignUp from './SignUp';
+import jwtDecode from 'jwt-decode'
+import Axios from '../config/api.service'
+import ProfileCard from './ProfileCard';
 
 export default class Header extends Component {
   constructor(props){
@@ -9,26 +12,56 @@ export default class Header extends Component {
     this.state = {
       loading: false,
       visible: false,
-      isLogin: false
+      isLogin: false,
+      userList : []
     }
   }
 
   componentDidMount(){
     const isToken = localStorage.getItem("ACCESS_TOKEN")
+    
     if(isToken){
+      const user = jwtDecode(localStorage.getItem("ACCESS_TOKEN"))
       this.setState({
         isLogin : true
+      },() =>{
+        Axios.get(`/users/${user.id}`)
+        .then(result => {
+          this.setState({
+            userList : result.data
+          });
+        })
+      })
+    } else {
+      this.setState({
+        isLogin : false
       })
     }
+  }
+
+  handleLogOut(){
+    localStorage.removeItem("ACCESS_TOKEN")
+    // this.props.history.push('/');
+    window.location.reload(true);
   }
 
   switchComponent = (visible,loading) => {
     if(this.state.isLogin){
       return (
         <Col span={12} style={{ backgroundColor: '#23272c'}}>
-          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>
-            <div style={{borderRadius:'50%',backgroundColor:'red',width:'30px',height:'30px'}}>
-            </div>
+          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 17 }}>
+            <img src = '/image/user.png' style={{borderRadius:'50%',backgroundColor:'#fff',width:'30px',height:'30px'}}/>        
+            <Popover placement="bottomRight" title={<ProfileCard/>} 
+              content={
+                <div style={{display:'flex',justifyContent: 'flex-end'}}>
+                  <Button type="danger" onClick = {this.handleLogOut}>Log out</Button>
+                </div>
+              }
+              trigger="click">
+              <span style ={{borderTop:'2px solid #fff' , borderBottom :'2px solid #fff',marginLeft:'15px',cursor: 'pointer'}}>
+                {this.state.userList.username}
+              </span>
+            </Popover>
           </div>
         </Col>
       )

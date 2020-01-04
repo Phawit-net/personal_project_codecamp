@@ -82,6 +82,7 @@ export default class MainPage extends Component {
   }
 
   render() {
+    const fullPath = this.props.location.pathname
     return (
       <div>
         <CategoryList
@@ -92,6 +93,7 @@ export default class MainPage extends Component {
           selectedId={this.state.selectedCategoriesId}
           selectedSubId ={this.state.selectedSubCategoriesId}/>
         <ProductCard
+          fullPath = {fullPath}
           productList={this.state.productList}/>
       </div>
     );
