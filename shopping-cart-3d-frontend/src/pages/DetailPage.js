@@ -5,6 +5,7 @@ import PriceCard from '../components/detail/PriceCard';
 import UserCard from '../components/detail/UserCard';
 import ImageCard from '../components/detail/ImageCard';
 import FullPath from '../components/detail/FullPath';
+import DetailCard from '../components/detail/DetailCard';
 
 export default class DetailPage extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class DetailPage extends Component {
       productList: [],
       categoryPath: [],
       subCategoryPath: [],
+      format:[]
     };
   }
 
@@ -24,6 +26,13 @@ export default class DetailPage extends Component {
     this.setState({ categoryPath: result2.data })
     const result3 = await Axios.get(`/subPath/${this.state.productList.sub_category_id}`)
     this.setState({ subCategoryPath: result3.data })
+
+    Axios.get(`/compounds`)
+      .then(result => {
+        this.setState({
+          format: result.data
+        });
+      })
   }
 
   handle = () => {
@@ -50,8 +59,10 @@ export default class DetailPage extends Component {
               price={this.state.productList.price} />
             <UserCard />
           </Col>
-          <Col span={24} style={{ backgroundColor: 'blue', padding: '0px 20px' }}>
-            asdasdas
+          <Col span={24} style={{ padding: '30px 20px' }}>
+            <DetailCard
+              description={this.state.productList.description} 
+              format = {this.state.format}/>
           </Col>
         </Row>
       </>

@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+    const compound = require('./compound')(sequelize,DataTypes)
     const product = sequelize.define('product', {
       name: {
         type: DataTypes.STRING(50)
@@ -16,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY
       }
     })
+  
+    product.associate = function (models) {
+      // associations can be defined here
+      product.belongsToMany(models.format,{through:compound})
+    };
   
     return product
   }
