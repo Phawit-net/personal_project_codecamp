@@ -26,13 +26,7 @@ export default class DetailPage extends Component {
     this.setState({ categoryPath: result2.data })
     const result3 = await Axios.get(`/subPath/${this.state.productList.sub_category_id}`)
     this.setState({ subCategoryPath: result3.data })
-
-    Axios.get(`/compounds`)
-      .then(result => {
-        this.setState({
-          format: result.data
-        });
-      })
+    
   }
 
   handle = () => {
@@ -50,19 +44,19 @@ export default class DetailPage extends Component {
             productName={this.state.productList.name} />
         </Row>
         <Row style={{ margin: '0px 130px 0px 130px' }} type='flex'>
-          <Col span={18} style={{ padding: '0px 20px' }}>
+          <Col span={16} style={{ padding: '0px 20px' }}>
             <ImageCard
               image={this.state.productList.image} />
           </Col>
-          <Col span={6} style={{ padding: '0px 20px' }}>
+          <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard
               price={this.state.productList.price} />
             <UserCard />
           </Col>
           <Col span={24} style={{ padding: '30px 20px' }}>
             <DetailCard
-              description={this.state.productList.description} 
-              format = {this.state.format}/>
+              description={this.state.productList.description} />
+              {/* format = {this.state.format}/> */}
           </Col>
         </Row>
       </>

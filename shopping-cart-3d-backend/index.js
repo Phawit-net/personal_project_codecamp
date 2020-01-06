@@ -11,7 +11,6 @@ const subcategoryService = require('./services/sub_category')
 const productService = require('./services/product')
 const userService = require('./services/user')
 const formatService = require('./services/format')
-const compoundService = require('./services/compound')
 
 
 app.use(passport.initialize())
@@ -30,7 +29,6 @@ db.sequelize.sync({ alter: false }).then(() => {
     productService(app, db)
     userService(app,db)
     formatService(app,db)
-    compoundService(app,db)
 
   app.listen(8080, () => {
     console.log("Server is running on port 8080")

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Row, Col, Input, Form, Button, Select } from 'antd'
 import Axios from '../config/api.service'
-
+const { Option } = Select;
+const children = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
 class AddPage extends Component {
 
   constructor(props) {
@@ -54,17 +58,32 @@ class AddPage extends Component {
           image: value.image,
           published_date: '2008-11-11'
         })
-          .then(result => {
-            console.log(result)
+          .then(product_result => {
+            // console.log(result.data.id)
+            Axios.post("/format", {
+              file_format: value.format,
+              product_id: product_result.data.id
+            })
+            .then(result => {
+              console.log(result)
+            })
+            .catch(err => {
+              console.error(err)
+            })
           })
           .catch(err => {
             console.error(err)
           })
+        
         this.props.form.resetFields()
       }
     })
   }
 
+  handleChange(value) {
+    console.log(`selected ${value}`); 
+    console.log(value.name)
+  }
 
   render() {
     const { Option } = Select;
@@ -173,6 +192,28 @@ class AddPage extends Component {
                           }
                         ]
                       })(<Input placeholder="Image URL" />)}
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row type="flex" justify="center">
+                  <Col span={10} style={{ marginRight: 20 }}>
+                    <Form.Item label="File Format" {...formProductLayout}>
+                      {getFieldDecorator("format", {
+                        rules: [
+                          {
+                            required: true,
+                            message: "Please select format"
+                          }
+                        ]
+                      })(<Select
+                        mode="multiple"
+                        style={{ width: '100%' }}
+                        placeholder="Please select"
+                        // defaultValue={['a10', 'c12']}
+                        onChange={this.handleChange}
+                      >
+                        {children}
+                      </Select>)}
                     </Form.Item>
                   </Col>
                 </Row>

@@ -18,7 +18,9 @@ module.exports = (app, db) => {
       db.product.findOne({
         where :{
           name: req.params.name
-        }
+        },include: [{
+          model: db.format
+        }]
       })
         .then(result => {
           res.status(200).json(result)
