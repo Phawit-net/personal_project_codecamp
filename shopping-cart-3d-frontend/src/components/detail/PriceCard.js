@@ -4,10 +4,10 @@ const { Text } = Typography;
 
 export default class PriceCard extends Component {
 
-  switchButton = (price) => {
+  switchButton = (price,handleClick) => {
     if (price != 0) {
       return (
-        <Button type='primary' onClick={this.handle} style={{ backgroundColor: '#429be8', padding: '10px', width: '200px', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Button type='primary' onClick={handleClick} style={{ backgroundColor: '#429be8', padding: '10px', width: '200px', height: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Icon type="shopping-cart" style={{ fontSize: '25px' }} />
           <Text style={{ fontSize: '20px', color: '#fff' }}>Add to Cart</Text>
         </Button>
@@ -70,7 +70,7 @@ export default class PriceCard extends Component {
     }
   }
   render() {
-    const { price } = this.props
+    const { price,handleClick } = this.props
     return (
       <div style={{ paddingBottom: '30px' }}>
         <Card style={{ width: '100%', boxShadow: '0px 0px 8px 0px rgba(204,204,204,1)', padding: '5px 20px' }}>
@@ -81,7 +81,7 @@ export default class PriceCard extends Component {
             {this.switchLicense(price)}
           </Row>
           <Row style={{ padding: '10px 0px', display: 'flex', justifyContent: 'center' }}>
-            {this.switchButton(price)}
+            {this.switchButton(price,handleClick)}
           </Row>
         </Card>
       </div>

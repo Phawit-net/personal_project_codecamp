@@ -14,7 +14,8 @@ export default class DetailPage extends Component {
       productList: [],
       categoryPath: [],
       subCategoryPath: [],
-      format:[]
+      format:[],
+      user:[]
     };
   }
 
@@ -26,10 +27,13 @@ export default class DetailPage extends Component {
     this.setState({ categoryPath: result2.data })
     const result3 = await Axios.get(`/subPath/${this.state.productList.sub_category_id}`)
     this.setState({ subCategoryPath: result3.data })
-    
+    const result4 = await Axios.get(`/formats`)
+    this.setState({ format: result4.data })
+    const result5 = await Axios.get(`/users/${this.state.productList.user_id}`)
+    this.setState({ user: result5.data })
   }
 
-  handle = () => {
+  handleClick = () => {
     console.log(this.state)
   }
 
@@ -50,13 +54,15 @@ export default class DetailPage extends Component {
           </Col>
           <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard
-              price={this.state.productList.price} />
-            <UserCard />
+              price={this.state.productList.price} 
+              handleClick = {this.handleClick}/>
+            <UserCard 
+              username ={this.state.user.username}/>
           </Col>
           <Col span={24} style={{ padding: '30px 20px' }}>
             <DetailCard
-              description={this.state.productList.description} />
-              {/* format = {this.state.format}/> */}
+              description={this.state.productList.description} 
+              file_formats = {this.state.format}/>
           </Col>
         </Row>
       </>
