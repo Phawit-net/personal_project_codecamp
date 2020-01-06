@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Form, Button, Select } from 'antd'
+import { Row, Col, Input, Form, Button, Select, Checkbox } from 'antd'
 import Axios from '../config/api.service'
+import fileformat from '../config/file.format'
+
 const { Option } = Select;
 const children = [];
-for (let i = 10; i < 36; i++) {
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+for (let i of fileformat()) {
+  children.push(<Option key={i}>{i}</Option>);
 }
+
 class AddPage extends Component {
 
   constructor(props) {
@@ -14,7 +17,7 @@ class AddPage extends Component {
       categoryList: [],
       subCategoryList: [],
       selectedCategoriesId: null,
-      selectedSubCategoriesId : null
+      selectedSubCategoriesId: null
     };
   }
   componentDidMount() {
@@ -35,13 +38,13 @@ class AddPage extends Component {
 
   handleCategoryChange = (value) => {
     this.setState({
-      selectedCategoriesId : value
+      selectedCategoriesId: value
     })
   }
 
   handleSubCategoryChange = (value) => {
     this.setState({
-      selectedSubCategoriesId : value
+      selectedSubCategoriesId: value
     })
   }
 
@@ -51,7 +54,7 @@ class AddPage extends Component {
       if (!err) {
         Axios.post("/product", {
           name: value.name,
-          category_id : value.categories,
+          category_id: value.categories,
           sub_category_id: value.subCategories,
           price: value.price,
           description: value.description,
@@ -59,30 +62,30 @@ class AddPage extends Component {
           published_date: '2008-11-11'
         })
           .then(product_result => {
-            // console.log(result.data.id)
             Axios.post("/format", {
               file_format: value.format,
               product_id: product_result.data.id
             })
-            .then(result => {
-              console.log(result)
-            })
-            .catch(err => {
-              console.error(err)
-            })
+              .then(result => {
+                console.log(result)
+              })
+              .catch(err => {
+                console.error(err)
+              })
           })
           .catch(err => {
             console.error(err)
           })
-        
         this.props.form.resetFields()
       }
     })
   }
 
   handleChange(value) {
-    console.log(`selected ${value}`); 
-    console.log(value.name)
+    // console.log(e.target.checked)
+    // console.log(e.target.value)
+    console.log(`selected ${value.chec}`);
+    // console.log(value.name)
   }
 
   render() {
@@ -147,7 +150,7 @@ class AddPage extends Component {
                           placeholder="Sub Categories"
                           onChange={this.handleSubCategoryChange}
                           style={{ width: 150 }}>
-                          {this.state.subCategoryList.filter(filter => filter.category_id === this.state.selectedCategoriesId).map(subCat =>(
+                          {this.state.subCategoryList.filter(filter => filter.category_id === this.state.selectedCategoriesId).map(subCat => (
                             <Option value={subCat.id} key={subCat.id}>{subCat.name}</Option>
                           ))}
                         </Select>
@@ -209,14 +212,73 @@ class AddPage extends Component {
                         mode="multiple"
                         style={{ width: '100%' }}
                         placeholder="Please select"
-                        // defaultValue={['a10', 'c12']}
-                        onChange={this.handleChange}
+                      // onChange={this.handleChange}
                       >
                         {children}
                       </Select>)}
                     </Form.Item>
                   </Col>
+                  <Col span={10} style={{ marginRight: 20 }}>
+                    <Form.Item label="Type" {...formProductLayout}>
+                      {getFieldDecorator('type', {
+                        rules: [
+                          {
+                            required: true,
+                            message: 'Please select type'
+                          }
+                        ]
+                      })(
+                        <Select
+                          placeholder="Geometry"
+                          style={{ width: 130 }}>
+                          <Option value='Nurbs' key='1'>
+                            {'Nurbs'}
+                          </Option>
+                          <Option value='Polygon Mesh' key='2'>
+                            {'Polygon Mesh'}
+                          </Option>
+                          <Option value='Subdivision' key='3'>
+                            {'Subdivision'}
+                          </Option>
+                        </Select>
+                      )}
+                    </Form.Item>
+                  </Col>
                 </Row>
+                <Form.Item label="Dummylabel">
+                  {getFieldDecorator("chec", {
+                    valuePropName: "checked",
+                    initialValue: true
+                  })(
+                    <Checkbox onChange ={this.handleChange} >Textures</Checkbox>
+                  )}
+                </Form.Item>
+                {/* <Form.Item label="Specification">
+                    {getFieldDecorator('specification')(
+                      <Checkbox.Group style={{ width: '100%' }}>
+                        <Row>
+                          <Col span={8}>
+                            <Checkbox onChange ={this.handleChange} value="texture">Textures</Checkbox>
+                          </Col>
+                          <Col span={8}>
+                            <Checkbox value="material">Material</Checkbox>
+                          </Col>
+                          <Col span={8}>
+                            <Checkbox value="rigged">Rigged</Checkbox>
+                          </Col>
+                          <Col span={8}>
+                            <Checkbox value="animated">Animated</Checkbox>
+                          </Col>
+                          <Col span={8}>
+                            <Checkbox value="uv_mapped">UV mapped</Checkbox>
+                          </Col>
+                          <Col span={8}>
+                            <Checkbox value="unwrapped">Unwrapped UVs</Checkbox>
+                          </Col>
+                        </Row>
+                      </Checkbox.Group>,
+                    )}
+                  </Form.Item> */}
                 <Row type="flex" justify="center">
                   <Col md={8} sm={12} xs={24}>
                     <Form.Item>

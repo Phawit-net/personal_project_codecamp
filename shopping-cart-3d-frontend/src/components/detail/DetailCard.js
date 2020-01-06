@@ -14,7 +14,7 @@ export default class DetailCard extends Component {
             </Row>
             <div style={{ borderBottom: '1px solid #000', margin: '0px 15px', padding: '1px' }} />
             <Row style={{ padding: '10px 15px' }}>
-              <Paragraph>{description}</Paragraph>
+              <Paragraph style={{ fontSize: '16px' }}>{description}</Paragraph>
             </Row>
           </Col>
           <Col span={8}>
@@ -23,7 +23,14 @@ export default class DetailCard extends Component {
             </Row>
             <div style={{ borderBottom: '1px solid #000', margin: '0px 15px', padding: '1px' }} />
             <Row style={{ padding: '10px 15px' }}>
-              {file_formats.map(file => file.file_format)}
+              <Col style={{padding:'0px 20px'}}>
+                {file_formats.map(file => (
+                  <>
+                    <Icon style={{ fontSize: '20px' }} type="file" />
+                    <Text strong style={{ fontSize: '20px' }}> {file.file_format}</Text>
+                  </>
+                  ))}
+              </Col>
             </Row>
           </Col>
           <Col span={8}>

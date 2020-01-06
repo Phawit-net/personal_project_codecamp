@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, Button, Icon, Typography } from 'antd'
+import { Row, Col } from 'antd'
 import Axios from '../config/api.service'
 import PriceCard from '../components/detail/PriceCard';
 import UserCard from '../components/detail/UserCard';
@@ -14,8 +14,8 @@ export default class DetailPage extends Component {
       productList: [],
       categoryPath: [],
       subCategoryPath: [],
-      format:[],
-      user:[]
+      format: [],
+      user: []
     };
   }
 
@@ -38,7 +38,6 @@ export default class DetailPage extends Component {
   }
 
   render() {
-    const { Text } = Typography;
     return (
       <>
         <Row style={{ margin: '17px 150px 17px 150px' }} type='flex'>
@@ -54,15 +53,15 @@ export default class DetailPage extends Component {
           </Col>
           <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard
-              price={this.state.productList.price} 
-              handleClick = {this.handleClick}/>
-            <UserCard 
-              username ={this.state.user.username}/>
+              price={this.state.productList.price}
+              handleClick={this.handleClick} />
+            <UserCard
+              username={this.state.user.username} />
           </Col>
           <Col span={24} style={{ padding: '30px 20px' }}>
             <DetailCard
-              description={this.state.productList.description} 
-              file_formats = {this.state.format}/>
+              description={this.state.productList.description}
+              file_formats={this.state.format} />
           </Col>
         </Row>
       </>

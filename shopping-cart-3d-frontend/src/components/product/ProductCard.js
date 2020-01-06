@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './ProductCard.css';
 import { Card, Row, Col } from 'antd';
+import {Link} from 'react-router-dom'
 const { Meta } = Card;
 
 export default class ProductCard extends Component {
@@ -11,7 +12,7 @@ export default class ProductCard extends Component {
         {productList.map(product => (
           <Col span={6} key ={product.id}>
             {/* <a href= {`${fullPath}/Detail/${product.name}`}> */}
-            <a href= {`/Detail/${product.name}`}>
+            <Link to= {`/Detail/${product.name}`}>
               <Card
                 hoverable
                 style={{ width: 300 }}
@@ -20,7 +21,7 @@ export default class ProductCard extends Component {
                 price : {product.price}
                 www.instagram.com
               </Card>
-            </a>
+            </Link>
           </Col>
         ))}
       </Row>

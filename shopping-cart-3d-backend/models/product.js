@@ -14,6 +14,33 @@ module.exports = (sequelize, DataTypes) => {
       },
       published_date:{
         type: DataTypes.DATEONLY
+      },
+      polygons_type:{
+        type: DataTypes.STRING(20)
+      },
+      polygons_count:{
+        type: DataTypes.DECIMAL
+      },
+      vertices_count:{
+        type: DataTypes.DECIMAL
+      },
+      texture:{
+        type: DataTypes.DECIMAL
+      },
+      material:{
+        type: DataTypes.DECIMAL
+      },
+      rigged:{
+        type: DataTypes.DECIMAL
+      },
+      animated:{
+        type: DataTypes.DECIMAL
+      },
+      uv_mapped:{
+        type: DataTypes.DECIMAL
+      },
+      unwrapped:{
+        type: DataTypes.DECIMAL
       }
     })
 
