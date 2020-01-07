@@ -55,14 +55,14 @@ module.exports = (app, db) => {
       image: req.body.image,
       published_date: req.body.published_date,
       polygons_type: req.body.polygons_type,
-      polygons_count: polygons_count,
-      vertices_count: vertices_count,
-      texture: texture,
-      material: material,
-      rigged: rigged,
-      animated: animated,
-      uv_mapped: uv_mapped,
-      unwrapped: unwrapped
+      polygons_count: req.body.polygons_count,
+      vertices_count: req.body.vertices_count,
+      texture: req.body.texture,
+      material: req.body.material,
+      rigged: req.body.rigged,
+      animated: req.body.animated,
+      uv_mapped: req.body.uv_mapped,
+      unwrapped: req.body.unwrapped
     }).then(result => {
       res.status(200).json(result)
     })

@@ -61,7 +61,17 @@ export default class DetailPage extends Component {
           <Col span={24} style={{ padding: '30px 20px' }}>
             <DetailCard
               description={this.state.productList.description}
-              file_formats={this.state.format} />
+              file_formats={this.state.format}
+              published_date={this.state.productList.published_date}
+              polygons_type={this.state.productList.polygons_type}
+              polygons_count={this.state.productList.polygons_count}
+              vertices_count={this.state.productList.vertices_count}
+              texture={this.state.productList.texture}
+              material={this.state.productList.material}
+              rigged={this.state.productList.rigged}
+              animated={this.state.productList.animated}
+              uv_mapped={this.state.productList.uv_mapped}
+              unwrapped={this.state.productList.unwrapped}/>
           </Col>
         </Row>
       </>

@@ -17,7 +17,13 @@ class AddPage extends Component {
       categoryList: [],
       subCategoryList: [],
       selectedCategoriesId: null,
-      selectedSubCategoriesId: null
+      selectedSubCategoriesId: null,
+      texture: 0,
+      material: 0,
+      rigged: 0,
+      animated: 0,
+      uv_mapped: 0,
+      unwrapped: 0
     };
   }
   componentDidMount() {
@@ -59,7 +65,16 @@ class AddPage extends Component {
           price: value.price,
           description: value.description,
           image: value.image,
-          published_date: '2008-11-11'
+          published_date: '2008-11-11',
+          polygons_type: value.polygons_type,
+          polygons_count: value.polygons_count,
+          vertices_count: value.vertices_count,
+          texture: this.state.texture,
+          material: this.state.material,
+          rigged: this.state.rigged,
+          animated: this.state.animated,
+          uv_mapped: this.state.uv_mapped,
+          unwrapped: this.state.unwrapped
         })
           .then(product_result => {
             Axios.post("/format", {
@@ -81,21 +96,17 @@ class AddPage extends Component {
     })
   }
 
-  handleChange(value) {
-    // console.log(e.target.checked)
-    // console.log(e.target.value)
-    console.log(`selected ${value.chec}`);
-    // console.log(value.name)
+  handleCheck = (e) => {
+    this.setState({
+      [e.target.id]: e.target.checked
+    })
   }
 
   render() {
     const { Option } = Select;
     const { TextArea } = Input;
     const { getFieldDecorator } = this.props.form;
-    const formProductLayout = {
-      labelCol: { span: 6 },
-      wrapperCol: { span: 18 },
-    };
+    
     return (
       <>
         <Row type='flex' justify="center">
@@ -105,9 +116,9 @@ class AddPage extends Component {
               </div>
             <div style={{ backgroundColor: '#e9ebed', padding: '30px' }}>
               <Form onSubmit={this.submitForm}>
-                <Row type='flex' align='middle'>
-                  <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="Name" {...formProductLayout}>
+                <Row style={{ display: 'flex'}}>
+                  <Col style={{ marginRight: '20px' }} span={8}>
+                    <Form.Item label='Name'>
                       {getFieldDecorator("name", {
                         rules: [
                           {
@@ -118,8 +129,8 @@ class AddPage extends Component {
                       })(<Input placeholder="Product name" />)}
                     </Form.Item>
                   </Col>
-                  <Col style={{ marginRight: 20 }}>
-                    <Form.Item>
+                  <Col style={{ marginRight: '20px' }} span={4}>
+                    <Form.Item label='Categories'>
                       {getFieldDecorator('categories', {
                         rules: [
                           {
@@ -131,7 +142,7 @@ class AddPage extends Component {
                         <Select
                           placeholder="Categories"
                           onChange={this.handleCategoryChange}
-                          style={{ width: 130 }}>
+                          style={{ width: 150 }}>
                           {this.state.categoryList.map(category => (
                             <Option value={category.id} key={category.id}>
                               {category.name}
@@ -141,8 +152,8 @@ class AddPage extends Component {
                       )}
                     </Form.Item>
                   </Col>
-                  <Col>
-                    <Form.Item>
+                  <Col style={{ marginRight: '20px' }}span={8}>
+                    <Form.Item label='Subcategories'>
                       {getFieldDecorator('subCategories', {
                         rules: [{ required: true, message: 'Please select categories!' }],
                       })(
@@ -157,6 +168,7 @@ class AddPage extends Component {
                       )}
                     </Form.Item>
                   </Col>
+
                 </Row>
                 <Row type='flex' align='middle'>
                   <Col span={24}>
@@ -174,7 +186,7 @@ class AddPage extends Component {
                 </Row>
                 <Row type='flex' align='middle'>
                   <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="Price" {...formProductLayout}>
+                    <Form.Item label="Price" >
                       {getFieldDecorator("price", {
                         rules: [
                           {
@@ -182,11 +194,11 @@ class AddPage extends Component {
                             message: "Please input price"
                           }
                         ]
-                      })(<Input placeholder="Price" />)}
+                      })(<Input placeholder="Price (THB)" />)}
                     </Form.Item>
                   </Col>
                   <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="Image" {...formProductLayout}>
+                    <Form.Item label="Image" >
                       {getFieldDecorator("image", {
                         rules: [
                           {
@@ -198,9 +210,9 @@ class AddPage extends Component {
                     </Form.Item>
                   </Col>
                 </Row>
-                <Row type="flex" justify="center">
-                  <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="File Format" {...formProductLayout}>
+                <Row type="flex">
+                  <Col span={6} style={{ marginRight: 20 }}>
+                    <Form.Item label="File Format" >
                       {getFieldDecorator("format", {
                         rules: [
                           {
@@ -212,15 +224,14 @@ class AddPage extends Component {
                         mode="multiple"
                         style={{ width: '100%' }}
                         placeholder="Please select"
-                      // onChange={this.handleChange}
                       >
                         {children}
                       </Select>)}
                     </Form.Item>
                   </Col>
-                  <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="Type" {...formProductLayout}>
-                      {getFieldDecorator('type', {
+                  <Col span={4} style={{ marginRight: 20 }}>
+                    <Form.Item label="Type" >
+                      {getFieldDecorator('polygons_type', {
                         rules: [
                           {
                             required: true,
@@ -230,7 +241,7 @@ class AddPage extends Component {
                       })(
                         <Select
                           placeholder="Geometry"
-                          style={{ width: 130 }}>
+                          style={{ width: 150 }}>
                           <Option value='Nurbs' key='1'>
                             {'Nurbs'}
                           </Option>
@@ -244,41 +255,97 @@ class AddPage extends Component {
                       )}
                     </Form.Item>
                   </Col>
+                  <Col span={4} style={{ marginRight: 20 }}>
+                    <Form.Item label="Polygons">
+                      {getFieldDecorator("polygons_count", {
+                        rules: [
+                          {
+                            required: true,
+                            message: "Please input polygons"
+                          }
+                        ]
+                      })(<Input
+                        type="text"
+                      />)}
+                    </Form.Item>
+                  </Col>
+                  <Col span={4} style={{ marginRight: 20 }}>
+                    <Form.Item label="Vertices" >
+                      {getFieldDecorator("vertices_count", {
+                        rules: [
+                          {
+                            required: true,
+                            message: "Please input vertices"
+                          }
+                        ]
+                      })(<Input
+                        type="text"
+                      />)}
+                    </Form.Item>
+                  </Col>
                 </Row>
-                <Form.Item label="Dummylabel">
-                  {getFieldDecorator("chec", {
-                    valuePropName: "checked",
-                    initialValue: true
-                  })(
-                    <Checkbox onChange ={this.handleChange} >Textures</Checkbox>
-                  )}
-                </Form.Item>
-                {/* <Form.Item label="Specification">
-                    {getFieldDecorator('specification')(
-                      <Checkbox.Group style={{ width: '100%' }}>
-                        <Row>
-                          <Col span={8}>
-                            <Checkbox onChange ={this.handleChange} value="texture">Textures</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="material">Material</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="rigged">Rigged</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="animated">Animated</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="uv_mapped">UV mapped</Checkbox>
-                          </Col>
-                          <Col span={8}>
-                            <Checkbox value="unwrapped">Unwrapped UVs</Checkbox>
-                          </Col>
-                        </Row>
-                      </Checkbox.Group>,
-                    )}
-                  </Form.Item> */}
+                <Row type="flex" justify="center">
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("texture", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck}>Textures</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("material", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck} >Material</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("rigged", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck} >Rigged</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("animated", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck} >Animated</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("uv_mapped", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck} >UV mapped</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                  <Col md={4} sm={12} xs={24}>
+                    <Form.Item>
+                      {getFieldDecorator("unwrapped", {
+                        valuePropName: "checked",
+                        initialValue: false
+                      })(
+                        <Checkbox onChange={this.handleCheck} >Unwrapped UVs</Checkbox>
+                      )}
+                    </Form.Item>
+                  </Col>
+                </Row>
                 <Row type="flex" justify="center">
                   <Col md={8} sm={12} xs={24}>
                     <Form.Item>
@@ -286,9 +353,8 @@ class AddPage extends Component {
                         block
                         type="primary"
                         htmlType="submit"
-                        className="login-form-button"
-                      >
-                        Log in
+                        className="login-form-button">
+                        Add Model
                       </Button>
                     </Form.Item>
                   </Col>
