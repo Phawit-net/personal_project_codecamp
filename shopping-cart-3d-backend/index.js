@@ -11,7 +11,10 @@ const subcategoryService = require('./services/sub_category')
 const productService = require('./services/product')
 const userService = require('./services/user')
 const formatService = require('./services/format')
+const fileUpload = require('express-fileupload')
+app.use(fileUpload())
 
+app.use(express.static('upload'))
 
 app.use(passport.initialize())
 

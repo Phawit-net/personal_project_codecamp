@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Form, Button, Select, Checkbox } from 'antd'
+import { Row, Col, Input, Form, Button, Select, Checkbox, Upload, Icon } from 'antd'
 import Axios from '../config/api.service'
 import fileformat from '../config/file.format'
 
@@ -23,7 +23,8 @@ class AddPage extends Component {
       rigged: 0,
       animated: 0,
       uv_mapped: 0,
-      unwrapped: 0
+      unwrapped: 0,
+      fileList: [],
     };
   }
   componentDidMount() {
@@ -56,15 +57,35 @@ class AddPage extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
+    // let payload = new FormData()
+
+    // payload.append('imageUpload', this.state.fileList[0])
+
     this.props.form.validateFieldsAndScroll((err, value) => {
       if (!err) {
+        // payload.append('name', value.name)
+        // payload.append('category_id', value.categories)
+        // payload.append('sub_category_id', value.subCategories)
+        // payload.append('price', value.price)
+        // payload.append('description', value.description)
+        // payload.append('published_date', value.published_date)
+        // payload.append('polygons_type', value.polygons_type)
+        // payload.append('polygons_count', value.polygons_count)
+        // payload.append('vertices_count', value.vertices_count)
+        // payload.append('texture', this.state.texture)
+        // payload.append('material', this.state.material)
+        // payload.append('rigged', this.state.rigged)
+        // payload.append('animated', this.state.animated)
+        // payload.append('uv_mapped', this.state.uv_mapped)
+        // payload.append('unwrapped', this.state.unwrapped)
+
         Axios.post("/product", {
           name: value.name,
           category_id: value.categories,
           sub_category_id: value.subCategories,
           price: value.price,
           description: value.description,
-          image: value.image,
+          image: value.upload,
           published_date: '2008-11-11',
           polygons_type: value.polygons_type,
           polygons_count: value.polygons_count,
@@ -76,7 +97,9 @@ class AddPage extends Component {
           uv_mapped: this.state.uv_mapped,
           unwrapped: this.state.unwrapped
         })
+
           .then(product_result => {
+            console.log(product_result)
             Axios.post("/format", {
               file_format: value.format,
               product_id: product_result.data.id
@@ -101,12 +124,39 @@ class AddPage extends Component {
       [e.target.id]: e.target.checked
     })
   }
+  normFile = e => {
+    console.log("Upload event:", e);
+    if (Array.isArray(e)) {
+      return e;
+    }
+    return e && e.fileList;
+  };
 
   render() {
     const { Option } = Select;
     const { TextArea } = Input;
     const { getFieldDecorator } = this.props.form;
-    
+    const { fileList } = this.state;
+    const props = {
+      onRemove: file => {
+        this.setState(state => {
+          const index = state.fileList.indexOf(file);
+          const newFileList = state.fileList.slice();
+          newFileList.splice(index, 1);
+          return {
+            fileList: newFileList
+          };
+        });
+      },
+      beforeUpload: file => {
+        this.setState(state => ({
+          fileList: [...state.fileList, file]
+        }));
+        return false;
+      },
+      fileList
+    };
+
     return (
       <>
         <Row type='flex' justify="center">
@@ -116,7 +166,7 @@ class AddPage extends Component {
               </div>
             <div style={{ backgroundColor: '#e9ebed', padding: '30px' }}>
               <Form onSubmit={this.submitForm}>
-                <Row style={{ display: 'flex'}}>
+                <Row style={{ display: 'flex' }}>
                   <Col style={{ marginRight: '20px' }} span={8}>
                     <Form.Item label='Name'>
                       {getFieldDecorator("name", {
@@ -152,7 +202,7 @@ class AddPage extends Component {
                       )}
                     </Form.Item>
                   </Col>
-                  <Col style={{ marginRight: '20px' }}span={8}>
+                  <Col style={{ marginRight: '20px' }} span={8}>
                     <Form.Item label='Subcategories'>
                       {getFieldDecorator('subCategories', {
                         rules: [{ required: true, message: 'Please select categories!' }],
@@ -198,15 +248,17 @@ class AddPage extends Component {
                     </Form.Item>
                   </Col>
                   <Col span={10} style={{ marginRight: 20 }}>
-                    <Form.Item label="Image" >
-                      {getFieldDecorator("image", {
-                        rules: [
-                          {
-                            required: true,
-                            message: "Please input Image URL"
-                          }
-                        ]
-                      })(<Input placeholder="Image URL" />)}
+                    <Form.Item label="Upload">
+                      {getFieldDecorator("upload", {
+                        // valuePropName: "fileList",
+                        getValueFromEvent: this.normFile
+                      })(
+                        <Upload {...props}>
+                          <Button>
+                            <Icon type="upload" /> Select File
+                          </Button>
+                        </Upload>
+                      )}
                     </Form.Item>
                   </Col>
                 </Row>
