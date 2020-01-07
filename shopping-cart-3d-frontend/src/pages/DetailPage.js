@@ -53,6 +53,7 @@ export default class DetailPage extends Component {
           </Col>
           <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard
+              cart_product = {this.state.productList}
               price={this.state.productList.price}
               handleClick={this.handleClick} />
             <UserCard

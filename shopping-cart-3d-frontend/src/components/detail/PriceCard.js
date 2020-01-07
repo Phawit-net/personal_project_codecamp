@@ -100,7 +100,7 @@ export default class PriceCard extends Component {
     }
   }
   render() {
-    const { price, handleClick } = this.props
+    const { price, handleClick , cart_product } = this.props
     return (
       <div style={{ paddingBottom: '30px' }}>
         <Card style={{ width: '100%', boxShadow: '0px 0px 8px 0px rgba(204,204,204,1)', padding: '5px 20px' }}>

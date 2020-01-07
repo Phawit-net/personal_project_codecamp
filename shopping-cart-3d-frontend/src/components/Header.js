@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Row, Col, Popover, Button } from 'antd';
+import { Row, Col, Popover, Button, Icon } from 'antd';
 import LoginCard from './LoginCard';
 import SignUp from './SignUp';
 import jwtDecode from 'jwt-decode'
 import Axios from '../config/api.service'
 import ProfileCard from './ProfileCard';
+import CartCard from './CartCard';
 
 export default class Header extends Component {
   constructor(props) {
@@ -50,6 +51,23 @@ export default class Header extends Component {
       return (
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 17 }}>
+            <Popover placement="bottom" title={<CartCard />}
+              content={
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Button type="danger" onClick={this.handleLogOut}>Log out</Button>
+                </div>
+              }
+              trigger="click">
+              <span style={{ marginRight: '50px', cursor: 'pointer' }}>
+                <Icon type="shopping-cart" style={{ fontSize: '27px' }} />
+              </span>
+            </Popover>
+            <span style={{ marginRight: '50px', cursor: 'pointer' }}>
+              <Icon type="bell" style={{ fontSize: '25px' }} />
+            </span>
+            <span style={{ marginRight: '50px', cursor: 'pointer' }}>
+              <Icon type="mail" style={{ fontSize: '25px' }} />
+            </span>
             <img src='/image/user.png' style={{ borderRadius: '50%', backgroundColor: '#fff', width: '30px', height: '30px' }} />
             <Popover placement="bottomRight" title={<ProfileCard />}
               content={
