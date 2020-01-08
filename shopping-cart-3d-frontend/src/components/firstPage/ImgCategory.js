@@ -17,7 +17,6 @@ export class ImgCategory extends Component {
                 <img src="/image/ArchitectureCatIcon.png" alt='archIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Architectures'>
-                {/* <a href='/main/1'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src="/image/ArchitectureCat.png" alt="building_img1" />
@@ -38,7 +37,6 @@ export class ImgCategory extends Component {
                 <img src='/image/AnimalCatIcon.png' alt='animalIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Animals'>
-                {/* <a href='/main/4'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/AnimalCat.png' alt="animal_img1" />
@@ -59,7 +57,6 @@ export class ImgCategory extends Component {
                 <img src="/image/FurnitureCatIcon.png" alt ='furnitureIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Furnitures'>
-                {/* <a href='/main/6'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/FurnitureCat.png' alt="furniture_img1" />
@@ -83,7 +80,6 @@ export class ImgCategory extends Component {
                 <img src='/image/CharacterCatIcon.png'alt='charIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Characters'>
-                {/* <a href='/main/2'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/CharacterCat.png' alt="char_img1" />
@@ -107,7 +103,6 @@ export class ImgCategory extends Component {
                 <img src='/image/FoodCatIcon.png'alt='foodIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Foods'>
-                {/* <a href='/main/7'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/FoodCat.png' alt="food_img1" />
@@ -131,7 +126,6 @@ export class ImgCategory extends Component {
                 <img src='/image/PlantCatIcon.png' alt='plantIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Plants'>
-                {/* <a href='/main/8'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/PlantCat.png' alt="plant_img1" />
@@ -158,7 +152,6 @@ export class ImgCategory extends Component {
                 <img src='/image/VehicleCatIcon.png'alt='vehicleIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Vehicles'>
-                {/* <a href='/main/3'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/VehicleCat.png' alt="vehicle_img1" />
@@ -179,7 +172,6 @@ export class ImgCategory extends Component {
                 <img src="/image/WeaponCatIcon.png" alt ='weaponIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Weapons'>
-                {/* <a href='/main/5'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src="/image/WeaponCat.png" alt="weapon_img1" />
@@ -206,7 +198,6 @@ export class ImgCategory extends Component {
                 <img src='/image/ElectronicCatIcon.png' alt='elecIcon' style={{ position: "absolute", width: "100px", height: '100px', filter: "invert(100%)" }} />
               </div>
               <a href='/Main/Electronics'>
-                {/* <a href='/main/9'> */}
                 <Carousel autoplay className='catMenu'>
                   <div>
                     <img style={{ width: 492, height: 480 }} src='/image/ElectronicCat.png' alt="electronic_img1" />

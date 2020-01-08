@@ -19,7 +19,7 @@ export default class CategoryList extends Component {
   }
   renderSubCategoryList(catId) {
     return this.props.subCategoryList
-      .filter(filter => filter.category_id === catId)
+      .filter(filter => filter.category_id == catId)
       .map(subCat => (
         <Menu.Item key={subCat.id} style={{ width: 90 }}>
           <Col style={{ display: "flex", justifyContent: "center" }}>

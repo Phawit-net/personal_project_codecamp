@@ -26,9 +26,9 @@ class CartCard extends Component {
           {
             cartsList.map(cartItem => (
               <li key={cartItem.id}>
-                <Row style={{ width: '300px', padding: '7px 0' }}>
+                <Row type='flex'align='middle' style={{ width: '300px', padding: '7px 0px ' ,borderBottom: '1px solid #e4e4e4'}}>
                   <Col span={9}>
-                    <img src={cartItem.image} alt={cartItem.name} style={{ width: '100px', height: '100px', border: '1px solid #000' }} />
+                    <img src={cartItem.image} alt={cartItem.name} style={{ width: '100px', height: '100px'}} />
                   </Col>
                   <Col span={12}>
                     <Row>

@@ -13,19 +13,13 @@ class PrivateRoute extends Component {
   }
 
   componentDidMount() {
-    const isToken = localStorage.getItem("ACCESS_TOKEN")
-    // let role = this.props.role
-    if (isToken) {
-        this.setState({
-            allowedRoutes: rolesConfig["user"].routes
-        })
-    } else {
-        this.setState({
-            allowedRoutes: rolesConfig["guest"].routes
-        })
-        // ,() =>{
-        //   this.props.history.push('/');
-        // })
+    let role = this.props.role
+    if (role) {
+      this.setState({
+        allowedRoutes: rolesConfig[role].routes
+      })
+    }  else {
+      this.props.history.push('/');
     }
   }
 

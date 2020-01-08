@@ -6,30 +6,36 @@ const components = {
     },
     mainPage: {
       component: 'MainPage',
-      url: '/Main/Architectures',
+      url: '/Main/:category',
     },
     addPage: {
       component: 'AddPage',
       url: '/Add',
+    },
+    detailPage:{
+      component: 'DetailPage',
+      url: '/Detail/:pid',
     }
   };
   
   export default {
     //role name as a key.
-    // admin: {
-    //   routes: [...Object.values(components)],
-    // },
+    admin: {
+      routes: [...Object.values(components)],
+    },
     user: {
       routes: [
         components.firstPage,
         components.mainPage,
-        components.addPage
+        components.addPage,
+        components.detailPage
       ]
     },
     guest: {
       routes: [
         components.firstPage,
         components.mainPage,
+        components.detailPage
       ]
     }
   }

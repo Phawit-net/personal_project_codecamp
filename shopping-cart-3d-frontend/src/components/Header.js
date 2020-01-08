@@ -80,7 +80,6 @@ class Header extends Component {
             <span style={{ marginRight: '50px', cursor: 'pointer' }}>
               <Icon type="mail" style={{ fontSize: '25px' }} />
             </span>
-            <img src='/image/user.png' style={{ borderRadius: '50%', backgroundColor: '#fff', width: '30px', height: '30px' }} />
             <Popover placement="bottomRight" title={<ProfileCard />}
               content={
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -88,9 +87,12 @@ class Header extends Component {
                 </div>
               }
               trigger="click">
+                <Row type='flex'align='middle'>
+              <img src='/image/user.png' style={{ borderRadius: '50%', backgroundColor: '#fff', width: '30px', height: '30px' ,cursor:'pointer' }} />
               <span style={{ borderTop: '2px solid #fff', borderBottom: '2px solid #fff', marginLeft: '15px', cursor: 'pointer' }}>
                 {this.props.user.username}
               </span>
+              </Row>
             </Popover>
           </div>
         </Col>
