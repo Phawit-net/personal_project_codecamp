@@ -26,16 +26,19 @@ class CartCard extends Component {
           {
             cartsList.map(cartItem => (
               <li key={cartItem.id}>
-                <Row type='flex'align='middle' style={{ width: '300px', padding: '7px 0px ' ,borderBottom: '1px solid #e4e4e4'}}>
-                  <Col span={9}>
+                <Row type='flex' align='middle' style={{ width: '350px', padding: '7px 0px ' ,borderBottom: '1px solid #e4e4e4'}}>
+                  <Col span={8}>
                     <img src={cartItem.image} alt={cartItem.name} style={{ width: '100px', height: '100px'}} />
                   </Col>
-                  <Col span={12}>
+                  <Col span={13}>
                     <Row>
-                      <Text>{cartItem.name}</Text>
+                      <Text strong style={{fontSize:'18px'}}>{cartItem.name.charAt(0).toUpperCase() + cartItem.name.slice(1)}</Text>
                     </Row>
                     <Row>
-                      <Text>{cartItem.price}</Text>
+                      <Text style={{fontSize:'12px'}}>By {cartItem.sellerName}</Text>
+                    </Row>
+                    <Row style={{paddingTop:'2px'}}>
+                      <Text style={{fontSize:'16px'}}>{cartItem.price} THB</Text>
                     </Row>
                   </Col>
                   <Col span={3}>
@@ -65,6 +68,7 @@ class CartCard extends Component {
 const mapStateToProps = function (state) {
   return {
     cartsList: state.carts,
+    
   }
 }
 

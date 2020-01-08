@@ -36,7 +36,12 @@ class DetailPage extends Component {
   }
 
   handleClick = () => {
-    this.props.addcart(this.state.productList.id,this.state.productList.name ,this.state.productList.price,this.state.productList.image )
+    this.props.addcart(
+      this.state.productList.id,
+      this.state.productList.name ,
+      this.state.productList.price,
+      this.state.productList.image ,
+      this.state.user.username)
     console.log(this.state)
   }
 

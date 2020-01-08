@@ -36,13 +36,15 @@ export function logout() {
     }
 }
 
-export function addcart(id, name, price, image) {
+
+export function addcart(id, name, price, image,sellerName) {
     return {
         type: ADD_CART,
         id: id,
         name: name,
         price: price,
-        image: image
+        image: image,
+        sellerName:sellerName,
     }
 }
 
