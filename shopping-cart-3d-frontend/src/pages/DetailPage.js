@@ -6,8 +6,10 @@ import UserCard from '../components/detail/UserCard';
 import ImageCard from '../components/detail/ImageCard';
 import FullPath from '../components/detail/FullPath';
 import DetailCard from '../components/detail/DetailCard';
+import { connect } from 'react-redux'
+import { addcart } from '../redux/actions/actions'
 
-export default class DetailPage extends Component {
+class DetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +36,7 @@ export default class DetailPage extends Component {
   }
 
   handleClick = () => {
+    this.props.addcart(this.state.productList.id,this.state.productList.name ,this.state.productList.price,this.state.productList.image )
     console.log(this.state)
   }
 
@@ -79,3 +82,9 @@ export default class DetailPage extends Component {
     )
   }
 }
+
+const mapDispatchToProps = {
+  addcart: addcart
+}
+
+export default connect(null, mapDispatchToProps)(DetailPage)

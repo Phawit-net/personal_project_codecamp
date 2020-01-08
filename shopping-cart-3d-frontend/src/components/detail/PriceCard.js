@@ -100,7 +100,7 @@ export default class PriceCard extends Component {
     }
   }
   render() {
-    const { price, handleClick , cart_product } = this.props
+    const { price, handleClick } = this.props
     return (
       <div style={{ paddingBottom: '30px' }}>
         <Card style={{ width: '100%', boxShadow: '0px 0px 8px 0px rgba(204,204,204,1)', padding: '5px 20px' }}>
@@ -111,10 +111,12 @@ export default class PriceCard extends Component {
             {this.switchLicense(price)}
           </Row>
           <Row style={{ padding: '10px 0px', display: 'flex', justifyContent: 'center' }}>
-            {this.switchButton(price, handleClick)}
+            {this.switchButton(price, handleClick )}
           </Row>
         </Card>
       </div>
     )
   }
 }
+
+

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Popover, Button, Icon } from 'antd';
+import { Row, Col, Popover, Button, Icon, Badge } from 'antd';
 import LoginCard from './LoginCard';
 import SignUp from './SignUp';
 import jwtDecode from 'jwt-decode'
@@ -9,6 +9,7 @@ import CartCard from './CartCard';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { logout } from '../redux/actions/actions'
+import { removecart } from '../redux/actions/actions'
 
 class Header extends Component {
   constructor(props) {
@@ -43,11 +44,15 @@ class Header extends Component {
     }
   }
 
-  handleLogOut=()=>{
+  handleLogOut = () => {
     this.props.logout()
     window.location.reload(true);
   }
 
+  handleDelete = () => {
+    this.props.removecart()
+    console.log(this.state)
+  }
   switchComponent = (visible, loading) => {
     if (this.state.isLogin) {
       return (
@@ -56,12 +61,14 @@ class Header extends Component {
             <Popover placement="bottom" title={<CartCard />}
               content={
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button type="danger" onClick={() => this.handleLogout()}>Log out</Button>
+                  <Button type="primary" onClick={() => this.handleDelete()}>Check out</Button>
                 </div>
               }
               trigger="click">
               <span style={{ marginRight: '50px', cursor: 'pointer' }}>
-                <Icon type="shopping-cart" style={{ fontSize: '27px' }} />
+                <Badge count={this.props.carts.length} style={{boxShadow:'0 0 0 0px #fff',backgroundColor:'#ff4d4f'}}>
+                  <Icon type="shopping-cart" style={{ fontSize: '27px' }} />
+                </Badge>
               </span>
             </Popover>
             <span style={{ marginRight: '50px', cursor: 'pointer' }}>
@@ -79,7 +86,7 @@ class Header extends Component {
               }
               trigger="click">
               <span style={{ borderTop: '2px solid #fff', borderBottom: '2px solid #fff', marginLeft: '15px', cursor: 'pointer' }}>
-                {this.state.userList.username}
+                {this.props.user.username}
               </span>
             </Popover>
           </div>
@@ -149,12 +156,14 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    carts:state.carts
   }
 }
 
 const mapDispatchToProps = {
-  logout: logout
+  logout: logout,
+  removecart: removecart
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))
