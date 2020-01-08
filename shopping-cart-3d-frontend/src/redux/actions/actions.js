@@ -46,6 +46,6 @@ export function addcart(id, name, price, image) {
     }
 }
 
-export function removecart() {
-    return { type: REMOVE_CART }
+export function removecart(id) {
+    return { type: REMOVE_CART,id:id }
 }  

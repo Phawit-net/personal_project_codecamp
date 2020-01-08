@@ -12,7 +12,7 @@ function userReducer(carts = [], action) {
             }]
 
         case REMOVE_CART:
-            return []
+            return [...carts].filter(x=>x.id !== action.id)
 
         default:
             return carts
