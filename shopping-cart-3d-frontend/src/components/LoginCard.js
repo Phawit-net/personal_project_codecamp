@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import { Row, Input, Button, Checkbox, Col, Form, Icon } from "antd";
 import Axios from '../config/api.service'
+import jwtDecode from 'jwt-decode'
+import { connect } from 'react-redux'
+import { login } from '../redux/actions/actions'
 
 class LoginCard extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      username : '',
-      password : '',
-    }
-  }
 
-   handleSubmit = (e)=>{
+  handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
@@ -19,20 +15,21 @@ class LoginCard extends Component {
           username: values.username,
           password: values.password
         })
-        .then(result => {
-          console.log(result.data)
-          localStorage.setItem('ACCESS_TOKEN', result.data.token)
-          // this.props.history.push('/')
-          window.location.reload(true);
-        })
-        .catch(err => {
-          console.error(err);
-          this.props.form.resetFields()
-        })
+          .then(result => {
+            console.log(result.data)
+            const user = jwtDecode(result.data.token)
+            this.props.login(user, result.data.token)
+            // this.props.history.push('/')
+            window.location.reload(true);
+          })
+          .catch(err => {
+            console.error(err);
+            this.props.form.resetFields()
+          })
       }
     })
   }
-  
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -96,4 +93,9 @@ class LoginCard extends Component {
   }
 }
 
-export default Form.create()(LoginCard);
+const mapDispatchToProps = {
+  login: login
+}
+
+const LoginForm = Form.create({ name: 'login' })(LoginCard);
+export default connect(null, mapDispatchToProps)(LoginForm)

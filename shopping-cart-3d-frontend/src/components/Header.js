@@ -6,8 +6,11 @@ import jwtDecode from 'jwt-decode'
 import Axios from '../config/api.service'
 import ProfileCard from './ProfileCard';
 import CartCard from './CartCard';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { logout } from '../redux/actions/actions'
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -40,9 +43,8 @@ export default class Header extends Component {
     }
   }
 
-  handleLogOut() {
-    localStorage.removeItem("ACCESS_TOKEN")
-    // this.props.history.push('/');
+  handleLogOut=()=>{
+    this.props.logout()
     window.location.reload(true);
   }
 
@@ -54,7 +56,7 @@ export default class Header extends Component {
             <Popover placement="bottom" title={<CartCard />}
               content={
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button type="danger" onClick={this.handleLogOut}>Log out</Button>
+                  <Button type="danger" onClick={() => this.handleLogout()}>Log out</Button>
                 </div>
               }
               trigger="click">
@@ -143,3 +145,16 @@ export default class Header extends Component {
     )
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = {
+  logout: logout
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header))

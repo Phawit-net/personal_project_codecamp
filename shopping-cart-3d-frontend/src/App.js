@@ -6,20 +6,31 @@ import MainPage from './pages/MainPage';
 import AddPage from './pages/AddPage';
 import PrivateRoute from './components/routes/PrivateRoute';
 import DetailPage from './pages/DetailPage';
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <>
-      <Header/>
-      <Switch>
-        {/* <PrivateRoute/> */}
-        <Route exact path="/" component={FirstPage} />
-        <Route path="/Main" component={MainPage} />
-        <Route exact path="/Add" component={AddPage} />
-        <Route path="/Detail" component={DetailPage} />
-      </Switch>
-    </>
-  );
+class App extends React.Component {
+  render() {
+    const role = this.props.user.role
+    console.log(role)
+    return (
+      <>
+        <Header />
+        <Switch>
+          {/* <PrivateRoute/> */}
+          <Route exact path="/" component={FirstPage} />
+          <Route path="/Main" component={MainPage} />
+          <Route exact path="/Add" component={AddPage} />
+          <Route path="/Detail" component={DetailPage} />
+        </Switch>
+      </>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, null)(App)

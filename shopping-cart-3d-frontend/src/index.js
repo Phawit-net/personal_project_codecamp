@@ -5,10 +5,14 @@ import App from './App';
 import 'antd/dist/antd.css';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom'
+import store from './redux/store/store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-    , document.getElementById('root'));
+  </Provider>,
+  document.getElementById('root'));
 
