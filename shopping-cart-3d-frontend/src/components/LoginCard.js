@@ -46,7 +46,6 @@ class LoginCard extends Component {
                 ]
               })(
                 <Input
-                  // onChange = {(e)=> this.setState({username : e.target.value})}
                   prefix={
                     <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                   }
@@ -65,7 +64,6 @@ class LoginCard extends Component {
                 ]
               })(
                 <Input
-                  // onChange = {(e)=> this.setState({password : e.target.value})}
                   prefix={
                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                   }

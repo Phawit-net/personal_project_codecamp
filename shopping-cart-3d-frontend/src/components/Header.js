@@ -17,30 +17,6 @@ class Header extends Component {
     this.state = {
       loading: false,
       visible: false,
-      isLogin: false,
-      userList: []
-    }
-  }
-
-  componentDidMount() {
-    const isToken = localStorage.getItem("ACCESS_TOKEN")
-
-    if (isToken) {
-      const user = jwtDecode(localStorage.getItem("ACCESS_TOKEN"))
-      this.setState({
-        isLogin: true
-      }, () => {
-        Axios.get(`/users/${user.id}`)
-          .then(result => {
-            this.setState({
-              userList: result.data
-            });
-          })
-      })
-    } else {
-      this.setState({
-        isLogin: false
-      })
     }
   }
 
@@ -49,24 +25,53 @@ class Header extends Component {
     window.location.reload(true);
   }
 
-  handleDelete = () => {
-    this.props.removecart()
-    console.log(this.state)
+  switchButtom(carts){
+    if(carts.length==0){
+      return(<Button type="primary" disabled>Check out</Button>)
+    } else{
+      return(<Button type="primary">Check out</Button>)
+    }
   }
-  switchComponent = (visible, loading) => {
-    if (this.state.isLogin) {
+
+  switchComponent = (user, visible, loading,carts) => {
+    if (user.role == 'guest') {
+      return (
+        <Col span={12} style={{ backgroundColor: '#23272c' }}>
+          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>
+            <Popover placement="bottom" title={<LoginCard />}
+              content={
+                <a href={'#'}>
+                  <span style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                    Forgot Password?
+                  </span>
+                </a>}
+              trigger="click">
+              <span style={{ cursor: 'pointer' }}>Login</span>
+            </Popover>
+            <span style={{ cursor: 'default', paddingLeft: 15 }}> or </span>
+            <span style={{ cursor: 'pointer', paddingLeft: 15 }} onClick={this.showModal}>Create Account</span>
+            <SignUp
+              handleOk={this.handleOk}
+              handleCancel={this.handleCancel}
+              loading={loading}
+              visible={visible}
+            />
+          </div>
+        </Col>
+      )
+    } else {
       return (
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 17 }}>
             <Popover placement="bottom" title={<CartCard />}
               content={
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button type="primary" onClick={() => this.handleDelete()}>Check out</Button>
+                  {this.switchButtom(carts)}
                 </div>
               }
               trigger="click">
               <span style={{ marginRight: '50px', cursor: 'pointer' }}>
-                <Badge count={this.props.carts.length} style={{boxShadow:'0 0 0 0px #fff',backgroundColor:'#ff4d4f'}}>
+                <Badge count={carts.length} style={{ boxShadow: '0 0 0 0px #fff', backgroundColor: '#ff4d4f' }}>
                   <Icon type="shopping-cart" style={{ fontSize: '27px' }} />
                 </Badge>
               </span>
@@ -92,31 +97,6 @@ class Header extends Component {
           </div>
         </Col>
       )
-    } else {
-      return (
-        <Col span={12} style={{ backgroundColor: '#23272c' }}>
-          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>
-            <Popover placement="bottom" title={<LoginCard />}
-              content={
-                <a href={'#'}>
-                  <span style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                    Forgot Password?
-                  </span>
-                </a>}
-              trigger="click">
-              <span style={{ cursor: 'pointer' }}>Login</span>
-            </Popover>
-            <span style={{ cursor: 'default', paddingLeft: 15 }}> or </span>
-            <span style={{ cursor: 'pointer', paddingLeft: 15 }} onClick={this.showModal}>Create Account</span>
-            <SignUp
-              handleOk={this.handleOk}
-              handleCancel={this.handleCancel}
-              loading={loading}
-              visible={visible}
-            />
-          </div>
-        </Col>
-      )
     }
   }
 
@@ -138,7 +118,10 @@ class Header extends Component {
   handleCancel = () => {
     this.setState({ visible: false });
   };
+
   render() {
+    let user = this.props.user
+    let carts = this.props.carts
     const { visible, loading } = this.state;
     return (
       <Row >
@@ -147,7 +130,7 @@ class Header extends Component {
             LOGO
           </div>
         </Col>
-        {this.switchComponent(visible, loading)}
+        {this.switchComponent(user, visible, loading,carts)}
       </Row>
     )
   }
@@ -157,7 +140,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    carts:state.carts
+    carts: state.carts
   }
 }
 
