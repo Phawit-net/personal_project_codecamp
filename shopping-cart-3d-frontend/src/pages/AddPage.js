@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col, Input, Form, Button, Select, Checkbox, Upload, Icon } from 'antd'
 import Axios from '../config/api.service'
 import fileformat from '../config/file.format'
+import { connect } from 'react-redux'
 
 const { Option } = Select;
 const children = [];
@@ -83,6 +84,7 @@ class AddPage extends Component {
           name: value.name,
           category_id: value.categories,
           sub_category_id: value.subCategories,
+          user_id : this.props.user.id,
           price: value.price,
           description: value.description,
           image: value.upload,
@@ -419,5 +421,10 @@ class AddPage extends Component {
     )
   }
 }
-
-export default Form.create()(AddPage);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  }
+}
+const AddProductForm = Form.create()(AddPage);
+export default (connect(mapStateToProps, null)(AddProductForm))

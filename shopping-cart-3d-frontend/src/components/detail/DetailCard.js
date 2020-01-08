@@ -28,7 +28,7 @@ export default class DetailCard extends Component {
         <Row style={{ padding: '15px 15px' }}>
           {file_formats.map(file => (
             <>
-              <Col span={5} style={{ padding: '0px 20px' }}>
+              <Col span={6} style={{ padding: '0px 20px' }}>
                 <Icon style={{ fontSize: '20px' }} type="file" />
                 <Text strong style={{ fontSize: '20px' }}> {file.file_format}</Text>
               </Col>
@@ -40,7 +40,7 @@ export default class DetailCard extends Component {
   }
 
   switchIcon = (boolean) => {
-    if (boolean === 1) {
+    if (boolean == 1) {
       return (
         <Icon type="check-circle" theme="twoTone" twoToneColor="#62d25e"/>
       )

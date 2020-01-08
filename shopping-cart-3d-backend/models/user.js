@@ -9,6 +9,9 @@ module.exports = (sequelize,DataType)=>{
         email :{
             type : DataType.STRING(100)
         },
+        avatar :{
+            type : DataType.STRING(100)
+        },
         role :{
             type : DataType.ENUM("admin","user")
         }

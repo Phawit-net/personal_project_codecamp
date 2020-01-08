@@ -61,7 +61,7 @@ module.exports = (app, db) => {
             username: req.body.username,
           },
         }).then(user => {
-          const token = jwt.sign({ id: user.id, role: user.role, email: user.email , username :user.username},
+          const token = jwt.sign({ id: user.id, role: user.role, email: user.email , username :user.username , avatar :user.avatar},
             jwtOptions.secretOrKey, { expiresIn: 3600 })
           res.status(200).send({
             auth: true,

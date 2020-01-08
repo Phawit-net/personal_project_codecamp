@@ -66,7 +66,8 @@ class DetailPage extends Component {
               price={this.state.productList.price}
               handleClick={this.handleClick} />
             <UserCard
-              username={this.state.user.username} />
+              username={this.state.user.username} 
+              avatar = {this.state.user.avatar}/>
           </Col>
           <Col span={24} style={{ padding: '30px 20px' }}>
             <DetailCard

@@ -70,6 +70,7 @@ module.exports = (app, db) => {
         sub_category_id: req.body.sub_category_id,
         price: req.body.price,
         description: req.body.description,
+        user_id:req.body.user_id,
         // image: req.body.image,
         published_date: req.body.published_date,
         polygons_type: req.body.polygons_type,

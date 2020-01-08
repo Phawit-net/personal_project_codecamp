@@ -25,6 +25,7 @@ class Header extends Component {
 
   handleLogOut = () => {
     this.props.logout()
+    this.props.history.push('/')
     window.location.reload(true);
   }
 
@@ -98,7 +99,7 @@ class Header extends Component {
               }
               trigger="click">
               <Row type='flex' align='middle'>
-                <img src='/image/user.png' style={{ borderRadius: '50%', backgroundColor: '#fff', width: '30px', height: '30px', cursor: 'pointer' }} />
+                <img src={this.props.user.avatar} style={{ borderRadius: '50%', backgroundColor: '#fff', width: '30px', height: '30px', cursor: 'pointer' }} />
                 <span style={{ borderTop: '2px solid #fff', borderBottom: '2px solid #fff', marginLeft: '15px', cursor: 'pointer' }}>
                   {this.props.user.username}
                 </span>
@@ -138,7 +139,9 @@ class Header extends Component {
       <Row >
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", fontSize: 20 }}>
-            LOGO
+            <a href = '/'>
+              <img src='/image/logo3.png' style={{width:'80px'}}/>
+            </a>
           </div>
         </Col>
         {this.switchComponent(user, visible, loading, carts,total)}

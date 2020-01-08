@@ -3,6 +3,7 @@ import { Switch } from 'react-router-dom'
 import Header from './components/Header';
 import PrivateRoute from './components/routes/PrivateRoute';
 import { connect } from 'react-redux'
+import Footer from './components/Footer';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
         <Switch>
           <PrivateRoute  role={role}/>
         </Switch>
+        {/* <Footer/> */}
       </>
     )
   }

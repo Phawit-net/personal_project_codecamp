@@ -14,7 +14,7 @@ class CartCard extends Component {
   switchRender(cartsList) {
     if (cartsList.length === 0) {
       return (
-        <Row style={{ width: '300px', padding: '5px 0' }}>
+        <Row style={{ width: '350px', padding: '5px 0' }}>
           <div style={{ backgroundColor: '#e3f4fc', padding: '5px 0px 5px 10px', borderRadius: '4px', borderLeft: '5px solid #bbe9ff', color: '#5396c0' }}>
             No products You haven't added any 3d models nor textures to your shopping basket.
           </div>
