@@ -12,10 +12,10 @@ class CartCard extends Component {
   }
 
   switchRender(cartsList) {
-    if (cartsList.length == 0) {
+    if (cartsList.length === 0) {
       return (
         <Row style={{ width: '300px', padding: '5px 0' }}>
-          <div style={{backgroundColor:'#e3f4fc',padding:'5px 0px 5px 10px',borderRadius:'4px',borderLeft:'5px solid #bbe9ff',color:'#5396c0'}}>
+          <div style={{ backgroundColor: '#e3f4fc', padding: '5px 0px 5px 10px', borderRadius: '4px', borderLeft: '5px solid #bbe9ff', color: '#5396c0' }}>
             No products You haven't added any 3d models nor textures to your shopping basket.
           </div>
         </Row>
@@ -28,7 +28,7 @@ class CartCard extends Component {
               <li key={cartItem.id}>
                 <Row style={{ width: '300px', padding: '7px 0' }}>
                   <Col span={9}>
-                    <img src={cartItem.image} style={{ width: '100px', height: '100px', border: '1px solid #000' }} />
+                    <img src={cartItem.image} alt={cartItem.name} style={{ width: '100px', height: '100px', border: '1px solid #000' }} />
                   </Col>
                   <Col span={12}>
                     <Row>

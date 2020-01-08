@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Row, Col, Divider, Icon, Typography } from 'antd'
+import { Card, Row, Col, Icon, Typography } from 'antd'
 const { Text, Paragraph } = Typography;
 
 export default class DetailCard extends Component {
@@ -40,7 +40,7 @@ export default class DetailCard extends Component {
   }
 
   switchIcon = (boolean) => {
-    if (boolean ==1) {
+    if (boolean === 1) {
       return (
         <Icon type="check-circle" theme="twoTone" twoToneColor="#62d25e"/>
       )

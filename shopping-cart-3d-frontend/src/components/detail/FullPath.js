@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Row, Button, Icon, Typography } from 'antd'
+import { Typography } from 'antd'
 const { Text } = Typography;
 
 export default class FullPath extends Component {

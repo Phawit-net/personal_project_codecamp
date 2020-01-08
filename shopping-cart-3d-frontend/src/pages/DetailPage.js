@@ -52,7 +52,8 @@ class DetailPage extends Component {
         <Row style={{ margin: '0px 130px 0px 130px' }} type='flex'>
           <Col span={16} style={{ padding: '0px 20px' }}>
             <ImageCard
-              image={this.state.productList.image} />
+              image={this.state.productList.image}
+              productName={this.state.productList.name} />
           </Col>
           <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard

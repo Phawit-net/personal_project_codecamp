@@ -19,7 +19,6 @@ export default class ProductCard extends Component {
                 cover={<img alt="example" src={product.image}/>}>
                 <Meta title={product.name} />
                 price : {product.price}
-                www.instagram.com
               </Card>
             </Link>
           </Col>

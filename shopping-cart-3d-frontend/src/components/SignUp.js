@@ -45,17 +45,6 @@ class SignUp extends Component {
         ]}
         onOk={handleOk}
         onCancel={handleCancel}
-        // footer={[
-        //   <Button
-        //     key="submit"
-        //     type="primary"
-        //     loading={loading}
-        //     htmlType="submit"
-        //     onClick={handleOk}
-        //     >
-        //     Sign up
-        //   </Button>
-        // ]}
         footer={null}
       >
         <div style ={{display:'flex' , justifyContent:'center'}}>

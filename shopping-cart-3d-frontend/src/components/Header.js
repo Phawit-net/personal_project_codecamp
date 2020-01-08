@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Row, Col, Popover, Button, Icon, Badge } from 'antd';
 import LoginCard from './LoginCard';
 import SignUp from './SignUp';
-import jwtDecode from 'jwt-decode'
-import Axios from '../config/api.service'
 import ProfileCard from './ProfileCard';
 import CartCard from './CartCard';
 import { withRouter } from 'react-router-dom';
@@ -25,16 +23,16 @@ class Header extends Component {
     window.location.reload(true);
   }
 
-  switchButtom(carts){
-    if(carts.length==0){
-      return(<Button type="primary" disabled>Check out</Button>)
-    } else{
-      return(<Button type="primary">Check out</Button>)
+  switchButtom(carts) {
+    if (carts.length === 0) {
+      return (<Button type="primary" disabled>Check out</Button>)
+    } else {
+      return (<Button type="primary">Check out</Button>)
     }
   }
 
-  switchComponent = (user, visible, loading,carts) => {
-    if (user.role == 'guest') {
+  switchComponent = (user, visible, loading, carts) => {
+    if (user.role === 'guest') {
       return (
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>
@@ -130,7 +128,7 @@ class Header extends Component {
             LOGO
           </div>
         </Col>
-        {this.switchComponent(user, visible, loading,carts)}
+        {this.switchComponent(user, visible, loading, carts)}
       </Row>
     )
   }

@@ -28,7 +28,7 @@ export default class MainPage extends Component {
       { id: 8, name: 'Plants' },
       { id: 9, name: 'Electronics' }
     ]
-    const local = cat.filter(cat => cat.name == location ? cat : null).map(cat => cat.id)[0] + ''
+    const local = cat.filter(cat => cat.name === location ? cat : null).map(cat => cat.id)[0] + ''
     Axios.get("/categories")
       .then(result => {
         this.setState({

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import './ProfileCard.css';
-import { Link, withRouter } from 'react-router-dom';
 
 export default class ProfileCard extends Component {
 
