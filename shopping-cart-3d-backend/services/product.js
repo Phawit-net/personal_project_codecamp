@@ -1,3 +1,5 @@
+const passport = require('passport')
+
 module.exports = (app, db) => {
   app.get('/products/:id', (req, res) => {
     db.product.findAll({
@@ -45,25 +47,27 @@ module.exports = (app, db) => {
       })
   })
 
-  app.post('/product', (req, res) => {
-    // if (!req.files) {
-    //   res.send({
-    //     status: false,
-    //     message: 'No file uploaded'
-    //   })
-    // } else {
-    //   const picture = req.files.imageUpload
-    //   const pictureName = `${(new Date()).getTime()}.jpeg`;
-    //   picture.mv('./upload/' + pictureName)
+  app.post('/product', passport.authenticate('jwt' , {session:false}) ,
+  (req, res) => {
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: 'No file uploaded'
+      })
+    } else {
+      const picture = req.files.imageUpload
+      const pictureName = `${(new Date()).getTime()}.jpg`;
+      picture.mv('./upload/' + pictureName)
 
-    //   res.send({
-    //     status: true,
-    //     message: 'File is uploaded',
-    //     data: {
-    //       name: pictureName,
-    //       size: picture.size
-    //     }
-    //   })
+      // res.send({
+      //   status: true,
+      //   message: 'File is uploaded',
+      //   data: {
+      //     name: pictureName,
+      //     size: picture.size
+      //   }
+      // })
+
       db.product.create({
         name: req.body.name,
         category_id: req.body.category_id,
@@ -71,7 +75,7 @@ module.exports = (app, db) => {
         price: req.body.price,
         description: req.body.description,
         user_id:req.body.user_id,
-        // image: req.body.image,
+        image:`http://localhost:8080/${pictureName}`,
         published_date: req.body.published_date,
         polygons_type: req.body.polygons_type,
         polygons_count: req.body.polygons_count,
@@ -88,7 +92,7 @@ module.exports = (app, db) => {
         .catch(error => {
           res.status(400).json({ message: error.message })
         })
-    // }
+    }
   })
 
 }

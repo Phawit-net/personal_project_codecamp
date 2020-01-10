@@ -1,3 +1,4 @@
+
 module.exports = (app, db) => {
   app.get('/categories', (req, res) => {
     db.category.findAll({
@@ -51,7 +52,7 @@ module.exports = (app, db) => {
   })
 
   app.put('/category/:id', (req, res) => {
-    db.category.update({
+    db.category.update({        
       name: req.body.name,
       icon: req.body.icon,
     }, { where: { id: req.params.id } })

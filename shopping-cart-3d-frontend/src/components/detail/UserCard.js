@@ -10,10 +10,10 @@ export default class UserCard extends Component {
       <div style={{ paddingBottom: '30px' }}>
         <Card style={{ width: '100%', height: '220px', boxShadow: '0px 0px 8px 0px rgba(204,204,204,1)', padding: '5px 20px' }}>
           <Row type='flex' align='middle'>
-            <Col span={5}>
+            <Col span={7}>
               <img src={avatar} alt='user' style={{ borderRadius: '50%', backgroundColor: '#cecece', width: '70px', height: '70px' }} />
             </Col>
-            <Col span={15}>
+            <Col span={12}>
               <Row>
                 Submitted by
               </Row>

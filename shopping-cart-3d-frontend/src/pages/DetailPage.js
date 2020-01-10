@@ -29,7 +29,7 @@ class DetailPage extends Component {
     this.setState({ categoryPath: result2.data })
     const result3 = await Axios.get(`/subPath/${this.state.productList.sub_category_id}`)
     this.setState({ subCategoryPath: result3.data })
-    const result4 = await Axios.get(`/formats`)
+    const result4 = await Axios.get(`/format/${this.state.productList.id}`)
     this.setState({ format: result4.data })
     const result5 = await Axios.get(`/users/${this.state.productList.user_id}`)
     this.setState({ user: result5.data })

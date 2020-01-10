@@ -41,7 +41,7 @@ class Header extends Component {
     if (user.role === 'guest') {
       return (
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
-          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>
+          <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 21 }}>
             <Popover placement="bottom" title={<LoginCard />}
               content={
                 <a href={'#'}>
@@ -140,7 +140,7 @@ class Header extends Component {
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", fontSize: 20 }}>
             <a href = '/'>
-              <img src='/image/logo3.png' style={{width:'80px'}}/>
+              <img src='/image/logo3.png' style={{width:'90px'}}/>
             </a>
           </div>
         </Col>

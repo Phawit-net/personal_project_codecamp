@@ -59,46 +59,51 @@ class AddPage extends Component {
   submitForm = (e) => {
     e.preventDefault();
     // let payload = new FormData()
-
-    // payload.append('imageUpload', this.state.fileList[0])
+    
+    // 
 
     this.props.form.validateFieldsAndScroll((err, value) => {
       if (!err) {
-        // payload.append('name', value.name)
-        // payload.append('category_id', value.categories)
-        // payload.append('sub_category_id', value.subCategories)
-        // payload.append('price', value.price)
-        // payload.append('description', value.description)
-        // payload.append('published_date', value.published_date)
-        // payload.append('polygons_type', value.polygons_type)
-        // payload.append('polygons_count', value.polygons_count)
-        // payload.append('vertices_count', value.vertices_count)
-        // payload.append('texture', this.state.texture)
-        // payload.append('material', this.state.material)
-        // payload.append('rigged', this.state.rigged)
-        // payload.append('animated', this.state.animated)
-        // payload.append('uv_mapped', this.state.uv_mapped)
-        // payload.append('unwrapped', this.state.unwrapped)
+        let payload = new FormData()
+        payload.append('imageUpload', this.state.fileList[0])
 
-        Axios.post("/product", {
-          name: value.name,
-          category_id: value.categories,
-          sub_category_id: value.subCategories,
-          user_id : this.props.user.id,
-          price: value.price,
-          description: value.description,
-          image: value.upload,
-          published_date: '2008-11-11',
-          polygons_type: value.polygons_type,
-          polygons_count: value.polygons_count,
-          vertices_count: value.vertices_count,
-          texture: this.state.texture,
-          material: this.state.material,
-          rigged: this.state.rigged,
-          animated: this.state.animated,
-          uv_mapped: this.state.uv_mapped,
-          unwrapped: this.state.unwrapped
-        })
+        payload.append('name', value.name)
+        payload.append('category_id', value.categories)
+        payload.append('sub_category_id', value.subCategories)
+        payload.append('user_id',this.props.user.id)
+        payload.append('price', value.price)
+        payload.append('description', value.description)
+        payload.append('published_date', '2008-11-11')
+        payload.append('polygons_type', value.polygons_type)
+        payload.append('polygons_count', value.polygons_count)
+        payload.append('vertices_count', value.vertices_count)
+        payload.append('texture', this.state.texture ? 1 : 0)
+        payload.append('material', this.state.material ? 1 : 0)
+        payload.append('rigged', this.state.rigged ? 1 : 0)
+        payload.append('animated', this.state.animated ? 1 : 0)
+        payload.append('uv_mapped', this.state.uv_mapped ? 1 : 0)
+        payload.append('unwrapped', this.state.unwrapped ? 1 : 0)
+        Axios.post("/product", payload)
+        
+        // Axios.post("/product", {
+        //   name: value.name,
+        //   category_id: value.categories,
+        //   sub_category_id: value.subCategories,
+        //   user_id : this.props.user.id,
+        //   price: value.price,
+        //   description: value.description,
+        //   image: value.upload,
+        //   published_date: '2008-11-11',
+        //   polygons_type: value.polygons_type,
+        //   polygons_count: value.polygons_count,
+        //   vertices_count: value.vertices_count,
+        //   texture: this.state.texture,
+        //   material: this.state.material,
+        //   rigged: this.state.rigged,
+        //   animated: this.state.animated,
+        //   uv_mapped: this.state.uv_mapped,
+        //   unwrapped: this.state.unwrapped
+        // })
 
           .then(product_result => {
             console.log(product_result)
@@ -162,7 +167,7 @@ class AddPage extends Component {
     return (
       <>
         <Row type='flex' justify="center">
-          <Col span={12}>
+          <Col span={14}>
             <div style={{ backgroundColor: '#23272c', color: '#fff', padding: '20px 30px', fontSize: '25px' }}>
               Information
               </div>
@@ -181,7 +186,7 @@ class AddPage extends Component {
                       })(<Input placeholder="Product name" />)}
                     </Form.Item>
                   </Col>
-                  <Col style={{ marginRight: '20px' }} span={4}>
+                  <Col style={{ marginRight: '10px' }} span={5}>
                     <Form.Item label='Categories'>
                       {getFieldDecorator('categories', {
                         rules: [
@@ -251,16 +256,16 @@ class AddPage extends Component {
                   </Col>
                   <Col span={10} style={{ marginRight: 20 }}>
                     <Form.Item label="Upload">
-                      {getFieldDecorator("upload", {
+                      {/* {getFieldDecorator("upload", {
                         // valuePropName: "fileList",
                         getValueFromEvent: this.normFile
-                      })(
+                      })( */}
                         <Upload {...props}>
                           <Button>
                             <Icon type="upload" /> Select File
                           </Button>
                         </Upload>
-                      )}
+                      {/* )} */}
                     </Form.Item>
                   </Col>
                 </Row>
@@ -283,7 +288,7 @@ class AddPage extends Component {
                       </Select>)}
                     </Form.Item>
                   </Col>
-                  <Col span={4} style={{ marginRight: 20 }}>
+                  <Col span={5} style={{ marginRight: '10px' }}>
                     <Form.Item label="Type" >
                       {getFieldDecorator('polygons_type', {
                         rules: [
@@ -309,7 +314,7 @@ class AddPage extends Component {
                       )}
                     </Form.Item>
                   </Col>
-                  <Col span={4} style={{ marginRight: 20 }}>
+                  <Col span={5} style={{ marginRight: 20 }}>
                     <Form.Item label="Polygons">
                       {getFieldDecorator("polygons_count", {
                         rules: [
@@ -323,7 +328,7 @@ class AddPage extends Component {
                       />)}
                     </Form.Item>
                   </Col>
-                  <Col span={4} style={{ marginRight: 20 }}>
+                  <Col span={5  } style={{ marginRight: 10 }}>
                     <Form.Item label="Vertices" >
                       {getFieldDecorator("vertices_count", {
                         rules: [
