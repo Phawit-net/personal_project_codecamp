@@ -8,6 +8,7 @@ import FullPath from '../components/detail/FullPath';
 import DetailCard from '../components/detail/DetailCard';
 import { connect } from 'react-redux'
 import { addcart } from '../redux/actions/actions'
+import ProductModel from '../components/ProductModel';
 
 class DetailPage extends Component {
   constructor(props) {
@@ -55,10 +56,11 @@ class DetailPage extends Component {
             productName={this.state.productList.name} />
         </Row>
         <Row style={{ margin: '0px 130px 0px 130px' }} type='flex'>
-          <Col span={16} style={{ padding: '0px 20px' }}>
-            <ImageCard
+          <Col span={16} style={{ padding: '0px 0px' ,borderRadius:'4px',border:'1px solid #c2c2c2'}}>
+            <ProductModel/>
+            {/* <ImageCard
               image={this.state.productList.image}
-              productName={this.state.productList.name} />
+              productName={this.state.productList.name} /> */}
           </Col>
           <Col span={8} style={{ padding: '0px 20px' }}>
             <PriceCard
