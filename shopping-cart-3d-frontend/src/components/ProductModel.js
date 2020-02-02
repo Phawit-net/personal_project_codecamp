@@ -5,13 +5,21 @@ import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 const OrbitControls = require('three-orbit-controls')(THREE);
-const modelObj = "/fantasy_house.obj"
-const matShade = "/fantasy_house.mtl"
-const jpgTexture = "/fantasy_house.png"
-
 export default class ProductModel extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      obj:''
+    };
+  }
+
+   componentDidMount() {
     // === THREE.JS CODE START ===
+
+    console.log(this.state)
+    const modelObj = `/${this.state}.obj`
+    const matShade = `/${this.state}.mtl`
+    const jpgTexture = `/${this.state}.png`
 
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0xffffff)
@@ -74,6 +82,7 @@ export default class ProductModel extends Component {
   }
 
   render() {
+    const { objName } = this.props;
     return (
       <Col span={24}>
         <div id="product_model"></div>
